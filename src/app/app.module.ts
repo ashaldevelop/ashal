@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterialModule } from '../shared/material';
 
+import { DashboardModule } from './dashboard/dashboard.module';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -16,7 +18,8 @@ import { MaterialModule } from '../shared/material';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

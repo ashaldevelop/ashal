@@ -1,0 +1,72 @@
+.example-container {
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+background: white;
+}
+
+
+
+.example-sidenav {
+/* display: flex;
+align-items: center;
+justify-content: center; */
+background: #2c3c57;
+-webkit-box-shadow: -6px 2px 9px -4px #506486;
+-moz-box-shadow: -6px 2px 9px -4px #506486;
+box-shadow: -6px 2px 9px -4px #506486;
+width: 300px;
+}
+
+.example-sidenav-content {
+align-items: center;
+justify-content: center;
+padding:1% 2%;
+}
+
+.example-sidenav {
+padding: 6% 40px;
+}
+
+.main-links{
+font-size: 30px;
+width:200px;
+padding:3px 10px 3px 1px;
+}
+
+/* mat-nav-list{
+border-bottom: 1px solid black;
+padding-bottom:6px;
+} */
+
+.main-links-icons{
+color: #B4D4F3;
+font-size:30px;
+line-height:25px;
+margin-right:20px
+}
+
+.links-text{
+color: #B4D4F3;
+}
+
+#admin-logo{
+display:flex;
+margin:0 auto;
+margin-bottom: 50px;
+}
+
+p{
+text-align: center;
+font-size: 20px;
+margin:0;
+padding: 0;
+color: #5c7092;
+margin-bottom: 30px;
+}
+
+.active-link{
+background: #0c182c;
+}
