@@ -16,3 +16,10 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// units api routes
+Route::get('units-list', 'UnitController@index');
+Route::get('unit/{Unit_NO}', 'UnitController@viewUnit');
+Route::post('new-unit', 'UnitController@save');
+Route::delete('unit/{Unit_No}', 'UnitController@delete');
+Route::put('update-unit/{Unit_No}', 'UnitController@update');
