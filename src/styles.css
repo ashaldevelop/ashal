@@ -1,6 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import '~ngx-toastr/toastr.css';
+
 #toast-container > div {
     opacity:1;
+}
+
+.hide{
+    display: none;
+}
+
+/* mat-table */
+mat-footer-row mat-footer-cell{
+    justify-content: center;
+    font-style: italic;
+    padding:30px;
 }

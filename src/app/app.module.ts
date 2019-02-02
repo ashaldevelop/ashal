@@ -9,7 +9,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 // angular material
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MaterialModule } from '../shared/material';
+import { MaterialModule } from './shared/material';
 
 import { DashboardModule } from './dashboard/dashboard.module';
 
