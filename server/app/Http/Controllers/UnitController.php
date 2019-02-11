@@ -16,7 +16,19 @@ class UnitController extends Controller
     }
 
     public function save(Request $request){
-        return Unit::create($request->all());
+
+        $unit= new Unit;
+        $unit->Arb_Des= $request->input('Arb_Des');
+        $unit->Eng_Des= $request->input('Eng_Des');
+         $unit->Unit_No= Unit::max('Unit_No') + 1;
+        // $unit->Unit_No= 5;
+        $unit->St= 0;
+        
+        if($unit->save()){
+            return $unit;
+        }
+        
+        // return Unit::create($request->all());
     }
     
     public function update(Request $request, $id){

@@ -1,10 +1,10 @@
 <mat-toolbar style='background:#CDEBFE;margin-bottom: 10px'>
 
   <span style="margin:0 auto;font-size:32px;font-weight: bold">
-    UNITS
+    CATEGORIES
   </span>
-  <button mat-flat-button (click)='onCreateUnit()' style="font-size:18px;background:#0C457E;color:white;border-radius: 10px;">
-    <mat-icon style="margin-right:10px;color:white">add</mat-icon>Add Unit
+  <button mat-flat-button (click)='onCreateNew()' style="font-size:18px;background:#0C457E;color:white;border-radius: 10px;">
+    <mat-icon style="margin-right:10px;color:white">add</mat-icon>Add Category
   </button>
   
 </mat-toolbar>
@@ -20,24 +20,24 @@
 
     <ng-container matColumnDef="index">
       <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="40px" style="flex: 0 0 10%;">  <button mat-button>#</button> </mat-header-cell>
-      <mat-cell *matCellDef="let unit let i= index;" fxFlex="40px" style="flex: 0 0 10%;"> <button mat-button style="font-weight: bold">{{ i+1 }}</button></mat-cell>
+      <mat-cell *matCellDef="let category let i= index;" fxFlex="40px" style="flex: 0 0 10%;"> <button mat-button style="font-weight: bold">{{ i+1 }}</button></mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Eng_Des">
       <mat-header-cell *matHeaderCellDef mat-sort-header> English Name </mat-header-cell>
-      <mat-cell *matCellDef="let unit"> {{unit.Eng_Des}} </mat-cell>
+      <mat-cell *matCellDef="let category"> {{category.Eng_Des}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Arb_Des">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Arabic Name </mat-header-cell>
-      <mat-cell *matCellDef="let unit"> {{unit.Arb_Des}} </mat-cell>
+      <mat-cell *matCellDef="let category"> {{category.Arb_Des}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="Unit_No">
+    <ng-container matColumnDef="CAT_No">
       <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-      <mat-cell *matCellDef="let unit">
-        <button mat-icon-button style='margin-right:40px' (click)="onEditUnit(unit.Unit_No)"><mat-icon>edit</mat-icon></button>
-        <button mat-icon-button color='warn' (click)="onDelete(unit.Unit_No)"><mat-icon>delete_outline</mat-icon></button>
+      <mat-cell *matCellDef="let category">
+        <button mat-icon-button style='margin-right:40px' (click)="onEditcategory(category.category_No)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color='warn' (click)="onDelete(category.category_No)"><mat-icon>delete_outline</mat-icon></button>
       </mat-cell>
     </ng-container>
 

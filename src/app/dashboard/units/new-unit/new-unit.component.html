@@ -1,0 +1,35 @@
+<mat-toolbar style="background:#31CA9E;color:white">
+  <span style="margin:0 auto" >Add New Unit </span>
+  <button class="btn-dialog-close" mat-mini-fab style="background:white;color:#31CA9E" (click)='onClose()' tabindex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+
+<form class="normal-form" [formGroup]="newForm" (ngSubmit)="newUnit()" autocomplete="off">
+
+<mat-grid-list cols='1' rowHeight='400px'>
+
+    <mat-grid-tile>
+
+        <div class="controles-container">
+            
+                <div class="input-group" class="form-item">
+                        <label for="Arb_Des">Arabic Description</label>
+                        <input dir="rtl" formControlName='Arb_Des' type="text" class="form-control" >
+                    </div>
+        
+                    <div class="input-group" class="form-item">
+                        <label for="Eng_Des">English Description</label>
+                        <input formControlName='Eng_Des' type="text" class="form-control" >
+                    </div>
+        
+        
+            <div class="button-row" style="margin-top:50px;position: relative;top:-25px">
+              <button mat-raised-button color="primary" type="submit" style="font-size:20px;background:#31CA9E;">Save</button>
+            </div>
+
+        </div>
+        
+    </mat-grid-tile>
+
+</mat-grid-list>
+
+</form>

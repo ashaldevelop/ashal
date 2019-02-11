@@ -9,9 +9,14 @@ import { MaterialModule } from '../shared/material';
 
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { UnitsListComponent } from './units/units-list/units-list.component';
+import { NewUnitComponent } from './units/new-unit/new-unit.component';
+import { ItemsListComponent } from './items/items-list/items-list.component';
+import { NewItemComponent } from './items/new-item/new-item.component';
+import { CategoryListComponent } from './catogory/category-list/category-list.component';
+import { NewCategoryComponent } from './catogory/new-category/new-category.component';
 
 @NgModule({
-  declarations: [SideNavComponent, UnitsListComponent],
+  declarations: [SideNavComponent, UnitsListComponent, NewUnitComponent, ItemsListComponent, NewItemComponent, CategoryListComponent, NewCategoryComponent],
   imports: [
     CommonModule,
     AppRoutingModule,
@@ -19,6 +24,7 @@ import { UnitsListComponent } from './units/units-list/units-list.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
-  ]
+  ],
+  entryComponents:[NewUnitComponent, NewCategoryComponent]
 })
 export class DashboardModule { }

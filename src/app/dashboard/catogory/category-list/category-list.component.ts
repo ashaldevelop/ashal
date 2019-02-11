@@ -8,26 +8,26 @@ import {MatDialog, MatDialogConfig} from '@angular/material';
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { AshalService } from '../../../shared/ashal.service';
-import { NewUnitComponent } from '../new-unit/new-unit.component';
-import { Unit } from 'src/app/shared/unit';
+import { NewCategoryComponent } from '../new-category/new-category.component';
+import { Category } from 'src/app/shared/category';
 
 @Component({
-  selector: 'app-units-list',
-  templateUrl: './units-list.component.html',
-  styleUrls: ['./units-list.component.css']
+  selector: 'app-category-list',
+  templateUrl: './category-list.component.html',
+  styleUrls: ['./category-list.component.css']
 })
-export class UnitsListComponent implements OnInit {
+export class CategoryListComponent implements OnInit {
 
   dataSource = new MatTableDataSource();
 
-  units: Unit[];
+  categorys: Category[];
   listData: any;
   serial: number = 1;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns = ['index', 'Eng_Des', 'Arb_Des', 'Unit_No'];
+  displayedColumns = ['index', 'Eng_Des', 'Arb_Des', 'CAT_No'];
 
   constructor(
     private ashalService: AshalService,
@@ -37,16 +37,16 @@ export class UnitsListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getUnits();
+    this.getCategorys();
   }
 
-  getUnits(){
-    return this.ashalService.getUnits().subscribe(
+  getCategorys(){
+    return this.ashalService.getCategorys().subscribe(
       res => {
         if(res){
           this.dataSource.data = res
           this.listData = this.dataSource
-          this.units = res
+          this.categorys = res
         }
       }
     );
@@ -68,9 +68,9 @@ export class UnitsListComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '55%';
-    const dialogCallBack = this.dialog.open(NewUnitComponent, dialogConfig);
+    const dialogCallBack = this.dialog.open(NewCategoryComponent, dialogConfig);
     dialogCallBack.afterClosed().subscribe(() => {
-      this.getUnits();
+      this.getCategorys();
     });
   } 
 

@@ -1,0 +1,333 @@
+<mat-toolbar style="background:#31CA9E;color:white">
+  <span style="margin:0 auto" >Items Define </span>
+</mat-toolbar>
+
+<form class="normal-form col-11" [formGroup]="newForm" (ngSubmit)="newItem()" autocomplete="off" style="margin:0 auto;padding-top:30px">
+
+    <div class="form-row">
+
+      <div class="col-3">
+        <label for="Arb_Des">Item No.</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <label for="Eng_Des">Code</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-6">
+
+        <label for="exampleFormControlSelect1">Category</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option>SELECT</option>
+          <option *ngFor="let category of categorys" value="{{category.CAT_No}}">{{category.Eng_Des}}</option>
+        </select>
+
+      </div>
+
+    </div>
+      
+  
+    <div class="form-row">
+
+      <div class="col-6">
+        <label for="Arb_Des">Arabic Description</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-6">
+        <label for="Eng_Des">English Description</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+    </div>
+
+    <div class="form-row">
+
+      <div class="col-6">
+
+        <label for="exampleFormControlSelect1">Default Supplier</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+
+      </div>
+
+    </div>
+
+    <div class="form-row">
+
+      <div class="col-3">
+        <label for="Arb_Des">Open Cost</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <label for="Eng_Des">Avarege Cost</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+    </div>
+
+    <div class="form-row">
+
+      <div class="col-3">
+        <label for="Arb_Des">Last Cost</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <label for="Eng_Des">Quantity</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+    </div>
+
+      
+    <div class="form-row">
+
+      <div class="col-3">
+        <label for="Arb_Des">Land Shipping Cost</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <label for="Eng_Des">Sea Shipping Cost</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+    </div>
+
+    <div class="form-row">
+
+      <div class="col-3">
+        <label for="Arb_Des">Maximum</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <label for="Eng_Des">Item Type</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+    </div>
+
+    <div class="form-row">
+
+      <div class="col-3">
+        <label for="Arb_Des">Request Limit</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <label for="Eng_Des">Item Size</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+    </div>
+
+
+    <!-- units -->
+    <h3>Units</h3>
+
+    <div class="form-row">
+        
+      <div class="col-2">
+        <label for="exampleFormControlSelect1">Unit</label>
+        <select  class="form-control" id="exampleFormControlSelect1">
+          <option>SELECT</option>
+          <option *ngFor="let unit of units">{{unit.Eng_Des}}</option>
+        </select>
+      </div>
+
+      <div class="col-1">
+        <label for="Eng_Des">التعبة</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <label for="Eng_Des">سعر البيع</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <label for="Eng_Des">الكمية</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <label for="Eng_Des">التكلفة</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <label for="Eng_Des">الباركود</label>
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <label for="exampleFormControlFile1">الافتراضي</label>
+        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+      </div>
+
+    </div>
+
+
+    <div class="form-row">
+      
+      <div class="col-2">
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option>SELECT</option>
+          <option *ngFor="let unit of units">{{unit.Eng_Des}}</option>
+        </select>
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+      </div>
+
+    </div>
+
+
+    <div class="form-row">
+      
+      <div class="col-2">
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option>SELECT</option>
+          <option *ngFor="let unit of units">{{unit.Eng_Des}}</option>
+        </select>
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+      </div>
+
+    </div>
+
+
+    <div class="form-row">
+      
+      <div class="col-2">
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option>SELECT</option>
+          <option *ngFor="let unit of units">{{unit.Eng_Des}}</option>
+        </select>
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+      </div>
+
+    </div>
+
+
+    <div class="form-row">
+      
+      <div class="col-2">
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option>SELECT</option>
+          <option *ngFor="let unit of units">{{unit.Eng_Des}}</option>
+        </select>
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+      </div>
+
+    </div>
+
+
+
+      
+  
+    <div class="button-row" style="margin-top:50px;position: relative;top:-25px">
+      <button mat-raised-button color="primary" type="submit" style="font-size:20px;background:#31CA9E;">Save</button>
+    </div>
+
+        
+</form>

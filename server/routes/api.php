@@ -23,3 +23,10 @@ Route::get('unit/{Unit_NO}', 'UnitController@viewUnit');
 Route::post('new-unit', 'UnitController@save');
 Route::delete('unit/{Unit_No}', 'UnitController@delete');
 Route::put('update-unit/{Unit_No}', 'UnitController@update');
+
+//items routes
+Route::get('items-list', 'ItemController@index');
+
+//category routes
+Route::get('categorys-list', 'CategoryController@index');
+Route::post('new-category', 'CategoryController@save');
