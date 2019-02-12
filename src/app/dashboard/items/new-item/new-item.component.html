@@ -7,19 +7,19 @@
     <div class="form-row">
 
       <div class="col-3">
-        <label for="Arb_Des">Item No.</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <label for="Itm_No">Item No.</label>
+        <input formControlName='Itm_No' type="text" class="form-control" style="background-color:turquoise">
       </div>
 
       <div class="col-3">
-        <label for="Eng_Des">Code</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <label for="Group_Code">Code</label>
+        <input formControlName='Group_Code' type="text" class="form-control" >
       </div>
 
       <div class="col-6">
 
         <label for="exampleFormControlSelect1">Category</label>
-        <select class="form-control" id="exampleFormControlSelect1">
+        <select class="form-control" id="exampleFormControlSelect1" style="background-color:turquoise">
           <option>SELECT</option>
           <option *ngFor="let category of categorys" value="{{category.CAT_No}}">{{category.Eng_Des}}</option>
         </select>
@@ -31,14 +31,18 @@
   
     <div class="form-row">
 
-      <div class="col-6">
+      <div class="col">
         <label for="Arb_Des">Arabic Description</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <input formControlName='Arb_Des' type="text" class="form-control" style="background-color:turquoise">
       </div>
 
-      <div class="col-6">
+    </div>
+
+    <div class="form-row">
+
+      <div class="col">
         <label for="Eng_Des">English Description</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <input formControlName='Eng_Des' type="text" class="form-control" style="background-color:turquoise">
       </div>
 
     </div>
@@ -47,13 +51,10 @@
 
       <div class="col-6">
 
-        <label for="exampleFormControlSelect1">Default Supplier</label>
+        <label for="DefultVendor">Default Supplier</label>
         <select class="form-control" id="exampleFormControlSelect1">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+          <option>SELECT</option>
+          <option *ngFor="let accdef of accdef" value="{{accdef.AccDef_No}}">{{accdef.Eng_Des}}</option>
         </select>
 
       </div>
@@ -63,13 +64,13 @@
     <div class="form-row">
 
       <div class="col-3">
-        <label for="Arb_Des">Open Cost</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <label for="StartCost">Open Cost</label>
+        <input formControlName='StartCost' type="text" class="form-control" >
       </div>
 
       <div class="col-3">
-        <label for="Eng_Des">Avarege Cost</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <label for="AvrageCost">Avarege Cost</label>
+        <input formControlName='AvrageCost' type="text" class="form-control" >
       </div>
 
     </div>
@@ -77,13 +78,13 @@
     <div class="form-row">
 
       <div class="col-3">
-        <label for="Arb_Des">Last Cost</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <label for="LastCost">Last Cost</label>
+        <input formControlName='LastCost' type="text" class="form-control" >
       </div>
 
       <div class="col-3">
-        <label for="Eng_Des">Quantity</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <label for="OpenQty">Quantity</label>
+        <input formControlName='OpenQty' type="text" class="form-control" >
       </div>
 
     </div>
@@ -92,27 +93,13 @@
     <div class="form-row">
 
       <div class="col-3">
-        <label for="Arb_Des">Land Shipping Cost</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <label for="Shipping_Cost">Land Shipping Cost</label>
+        <input formControlName='Shipping_Cost' type="text" class="form-control" >
       </div>
 
       <div class="col-3">
-        <label for="Eng_Des">Sea Shipping Cost</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
-      </div>
-
-    </div>
-
-    <div class="form-row">
-
-      <div class="col-3">
-        <label for="Arb_Des">Maximum</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
-      </div>
-
-      <div class="col-3">
-        <label for="Eng_Des">Item Type</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <label for="SeaCost">Sea Shipping Cost</label>
+        <input formControlName='SeaCost' type="text" class="form-control" >
       </div>
 
     </div>
@@ -120,13 +107,94 @@
     <div class="form-row">
 
       <div class="col-3">
+        <label for="QtyMax">Maximum</label>
+        <input formControlName='QtyMax' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <label for="ItmTyp">Item Type</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option>SELECT</option>
+          <option value="0">بضاعة</option>
+          <option value="1">مواد خام</option>
+          <option value="2">منتج</option>
+          <option value="3">منتج خدمة</option>
+          <option value="4">موقوف</option>
+        </select>
+      </div>
+
+      <div class="col-3">
+        <label for="Tax">Tax Value</label>
+        <input formControlName='Tax' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <label for="ItmNature">Tax Calculate</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option>SELECT</option>
+          <option value="0">Sales price</option>
+          <option value="1">Profite margin</option>
+          <option value="2">Price include tax</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="form-row">
+
+      <div class="col-3">
+        <label for="QtyLvl">Request Limit</label>
+        <input formControlName='QtyLvl' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <label for="ItmLoc">Item Size</label>
+        <input formControlName='ItmLoc' type="text" class="form-control" >
+      </div>
+
+    </div>
+
+    <div class="form-row">
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Validate patch No.</label>
+      </div>
+    
+    </div>
+
+    <div class="form-row">
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Use expire date</label>
+      </div>
+
+      <div class="col-2" align='right'>
         <label for="Arb_Des">Request Limit</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
       </div>
+    
+      <div class="col-3" style="position:relative;top:-8px">
+        <input formControlName='LrnExp' type="text" class="form-control" >
+      </div>
+    
+    
+      <div class="col-3" style="position:relative;top:-8px">
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option>SELECT</option>
+          <option value="0">Day</option>
+          <option value="1">Month</option>
+          <option value="2">Year</option>
+        </select>
+      </div>
+    
+    </div>
 
-      <div class="col-3">
-        <label for="Eng_Des">Item Size</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+    <div class="form-row">
+
+      <div class="col">
+        <label for="Note">Notes</label>
+        <input formControlName='Note' type="text" class="form-control">
       </div>
 
     </div>
@@ -139,20 +207,20 @@
         
       <div class="col-2">
         <label for="exampleFormControlSelect1">Unit</label>
-        <select  class="form-control" id="exampleFormControlSelect1">
+        <select  class="form-control" id="exampleFormControlSelect1" style="background-color:turquoise">
           <option>SELECT</option>
           <option *ngFor="let unit of units">{{unit.Eng_Des}}</option>
         </select>
       </div>
 
       <div class="col-1">
-        <label for="Eng_Des">التعبة</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <label for="Pack1">التعبئة</label>
+        <input formControlName='Pack1' type="text" class="form-control" style="background-color:turquoise">
       </div>
 
       <div class="col-1">
-        <label for="Eng_Des">سعر البيع</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <label for="UntPri1">سعر البيع</label>
+        <input formControlName='UntPri1' type="text" class="form-control" style="background-color:turquoise">
       </div>
 
       <div class="col-1">
@@ -166,8 +234,8 @@
       </div>
 
       <div class="col-3">
-        <label for="Eng_Des">الباركود</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <label for="BarCod1">الباركود</label>
+        <input formControlName='BarCod1' type="text" class="form-control" >
       </div>
 
       <div class="col-3">
@@ -188,47 +256,11 @@
       </div>
 
       <div class="col-1">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <input formControlName='Pack2' type="text" class="form-control" >
       </div>
 
       <div class="col-1">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
-      </div>
-
-      <div class="col-1">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
-      </div>
-
-      <div class="col-1">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
-      </div>
-
-      <div class="col-3">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
-      </div>
-
-      <div class="col-3">
-        <input type="file" class="form-control-file" id="exampleFormControlFile1">
-      </div>
-
-    </div>
-
-
-    <div class="form-row">
-      
-      <div class="col-2">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>SELECT</option>
-          <option *ngFor="let unit of units">{{unit.Eng_Des}}</option>
-        </select>
-      </div>
-
-      <div class="col-1">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
-      </div>
-
-      <div class="col-1">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <input formControlName='UntPri2' type="text" class="form-control" >
       </div>
 
       <div class="col-1">
@@ -240,7 +272,7 @@
       </div>
 
       <div class="col-3">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <input formControlName='BarCod2' type="text" class="form-control" >
       </div>
 
       <div class="col-3">
@@ -260,11 +292,11 @@
       </div>
 
       <div class="col-1">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <input formControlName='Pack3' type="text" class="form-control" >
       </div>
 
       <div class="col-1">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <input formControlName='UntPri3' type="text" class="form-control" >
       </div>
 
       <div class="col-1">
@@ -276,7 +308,7 @@
       </div>
 
       <div class="col-3">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <input formControlName='BarCod3' type="text" class="form-control" >
       </div>
 
       <div class="col-3">
@@ -296,11 +328,11 @@
       </div>
 
       <div class="col-1">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <input formControlName='Pack4' type="text" class="form-control" >
       </div>
 
       <div class="col-1">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <input formControlName='UntPri4' type="text" class="form-control" >
       </div>
 
       <div class="col-1">
@@ -312,12 +344,85 @@
       </div>
 
       <div class="col-3">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <input formControlName='BarCod4' type="text" class="form-control" >
       </div>
 
       <div class="col-3">
         <input type="file" class="form-control-file" id="exampleFormControlFile1">
       </div>
+
+    </div>
+
+
+    <div class="form-row">
+      
+      <div class="col-2">
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option>SELECT</option>
+          <option *ngFor="let unit of units">{{unit.Eng_Des}}</option>
+        </select>
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Pack5' type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input formControlName='UntPri5' type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Eng_Des' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <input formControlName='BarCod5' type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+      </div>
+
+    </div>
+
+    <!-- prices -->
+    <h4>Prices(Default Price)</h4>
+    <div class="form-row">
+
+      <div class="col-2">
+        <label for="Price1">Manimum Price</label>
+        <input formControlName='Price1' type="text" class="form-control">
+      </div>
+
+      <div class="col-2">
+        <label for="Price2">Special Price</label>
+        <input formControlName='Price2' type="text" class="form-control">
+      </div>
+
+      <div class="col-2">
+        <label for="Price3">Retail Price</label>
+        <input formControlName='Price3' type="text" class="form-control">
+      </div>
+
+      <div class="col-2">
+        <label for="Price4">Salesman Price</label>
+        <input formControlName='Price4' type="text" class="form-control">
+      </div>
+
+      <div class="col-2">
+        <label for="Price5">Distributer Price</label>
+        <input formControlName='Price5' type="text" class="form-control">
+      </div>
+
+      <div class="col-2">
+        <label for="Price6">Wholesale Price</label>
+        <input formControlName='Price6' type="text" class="form-control">
+      </div>
+
 
     </div>
 

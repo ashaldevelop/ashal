@@ -1,0 +1,69 @@
+<mat-toolbar style='background:#CDEBFE;margin-bottom: 10px'>
+
+  <span style="margin:0 auto;font-size:32px;font-weight: bold">
+    Accounts
+  </span>
+  <button mat-flat-button (click)='onCreateNew()' style="font-size:18px;background:#0C457E;color:white;border-radius: 10px;">
+    <mat-icon style="margin-right:10px;color:white">add</mat-icon>Add Account
+  </button>
+  
+</mat-toolbar>
+
+<div class="data-table">
+  
+  <mat-form-field style="width:30%">
+      <mat-icon>search</mat-icon><input matInput (keyup)="applyFilter($event.target.value)">
+  </mat-form-field>
+  
+
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="index">
+      <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="40px" style="flex: 0 0 10%;">  <button mat-button>#</button> </mat-header-cell>
+      <mat-cell *matCellDef="let accdef let i= index;" fxFlex="40px" style="flex: 0 0 10%;"> <button mat-button style="font-weight: bold">{{ i+1 }}</button></mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Eng_Des">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> English Name </mat-header-cell>
+      <mat-cell *matCellDef="let accdef"> {{accdef.Eng_Des}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Arb_Des">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Arabic Name </mat-header-cell>
+      <mat-cell *matCellDef="let accdef"> {{accdef.Arb_Des}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="AccDef_No">
+      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+      <mat-cell *matCellDef="let accdef">
+        <button mat-icon-button style='margin-right:40px' (click)="onEditaccdef(accdef.AccDef_No)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color='warn' (click)="onDelete(accdef.AccDef_No)"><mat-icon>delete_outline</mat-icon></button>
+      </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+          <mat-spinner></mat-spinner>
+      </mat-footer-cell>
+    </ng-container>
+    <ng-container matColumnDef="noData">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        No data.
+      </mat-footer-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listData!=null}"></mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listData!=null && listData.length==0)}"></mat-footer-row>
+
+  </mat-table>
+
+  <mat-paginator #paginator
+    [length]="dataSource.filteredData.length"
+    [pageIndex]="0"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+
+</div>

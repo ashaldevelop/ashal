@@ -30,3 +30,7 @@ Route::get('items-list', 'ItemController@index');
 //category routes
 Route::get('categorys-list', 'CategoryController@index');
 Route::post('new-category', 'CategoryController@save');
+
+//AccDef routes
+Route::get('accdef-list', 'AccDefController@indexPublic');
+Route::post('new-accdef', 'AccDefController@save');

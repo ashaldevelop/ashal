@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AshalService } from '../../../shared/ashal.service';
 import { Category } from 'src/app/shared/category';
 import { Unit } from 'src/app/shared/unit';
+import { AccDef } from 'src/app/shared/accdef';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class NewItemComponent implements OnInit {
 
   units: Unit[];
   categorys: Category[];
-
+  accdef: AccDef[];
   newForm: FormGroup;
 
   constructor(
@@ -34,6 +35,7 @@ export class NewItemComponent implements OnInit {
     this.unitForm();
     this.getCategorys();
     this.getUnits();
+    this.getAccDef();
   }
 
   getCategorys(){
@@ -41,6 +43,15 @@ export class NewItemComponent implements OnInit {
       categorys =>{
          this.categorys = categorys
          console.log(this.categorys)
+       } 
+    )
+  }
+
+  getAccDef(){
+    this.ashalService.getAccDef().subscribe(
+      accdef =>{
+         this.accdef = accdef
+         console.log(this.accdef)
        } 
     )
   }

@@ -14,9 +14,17 @@ import { ItemsListComponent } from './items/items-list/items-list.component';
 import { NewItemComponent } from './items/new-item/new-item.component';
 import { CategoryListComponent } from './catogory/category-list/category-list.component';
 import { NewCategoryComponent } from './catogory/new-category/new-category.component';
+import { AccdefListComponent } from './accdef/accdef-list/accdef-list.component';
 
 @NgModule({
-  declarations: [SideNavComponent, UnitsListComponent, NewUnitComponent, ItemsListComponent, NewItemComponent, CategoryListComponent, NewCategoryComponent],
+  declarations: [SideNavComponent,
+    UnitsListComponent,
+    NewUnitComponent,
+    ItemsListComponent,
+    NewItemComponent,
+    CategoryListComponent,
+    NewCategoryComponent,
+    AccdefListComponent],
   imports: [
     CommonModule,
     AppRoutingModule,
