@@ -4,65 +4,65 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Unit;
 use App\Http\Resources\Category as CategoryResource;
 
-class CategoryController extends Controller
-{
-    public function index()
-    {
+class CategoryController extends Controller{
+    
+
+    // get all categorys
+    public function index(){
         return response()->json(CategoryResource::collection(Category::orderBy('CAT_No', 'DESC')->get()));
     }
 
-    public function save(Request $request)
-    {
-        $Category= new Category;
-        $Category->Arb_Des= $request->input('Arb_Des');
-        $Category->Eng_Des= $request->input('Eng_Des');
 
-         $Category->Cat_No= Unit::max('Cat_No') + 1;
+    // save new category
+    public function save(Request $request){
+        $category= new Category;
+        $category->Arb_Des= $request->input('Arb_Des');
+        $category->Eng_Des= $request->input('Eng_Des');
+
+         $category->CAT_No= Category::max('CAT_No') + 1;
         // $Category->Unit_No= 5;
-        $Category->St= 0;
+        $category->St= 0;
 
-        if($Category->save()){
-            return 'success';
+        if($category->save()){
+            return $category;
         }
 
     }
 
-    public function delete($id)
+
+    // get single category
+    public function view($id)
     {   
-
-        $Cat_No = (int)$id;
-        $Category = Category::where('Cat_No', $Cat_No)->first();
-
-        if($Category->delete()){
-            return 'success';
-        }
-
+        return Category::where('CAT_No', '=', $id)->firstOrFail();
     }
 
-    public function viewCategory($id)
-    {   
-        $Category = Category::findOrFail($id);
-        return response()->json(new CategoryResource($Category));       
-    }
 
-    public function update(Request $request)
+    // update single category
+    public function put(Request $request, $id)
     {
-        $Cat_No= (int)($request->input('Cat_No'));
 
-        $Category = Category::where('Cat_No', $Cat_No)->first();
+        $category = Category::where('CAT_No', $id)->first();
 
-
-        $Category->Arb_Des= $request->input('Arb_Des');
-        $Category->Eng_Des= $request->input('Eng_Des');
+        $category->Arb_Des= $request->input('Arb_Des');
+        $category->Eng_Des= $request->input('Eng_Des');
         
-        $Category->St= 0;
-        if($Category->update()){
-            return 'success';
+        $category->St= 0;
+        if($category->update()){
+            return $category;
         }
 
     }
 
+    // delete single category
+    public function delete($id){   
+        $category= Category::where('CAT_No', '=', $id)->firstOrFail();
+        if($category->delete()){
+            return 204;
+        }
+
+    }
 
 }

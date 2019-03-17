@@ -1,14 +1,14 @@
 import { Category } from './category';
 export interface Item{
-    Item_id: number;
-    Item_No: string;
-    ItemCat: Category[];
+    // Item_id: number;
+    Itm_No: string;
+    ItmCat: Category;
     Arb_Des: string;
     Eng_Des: string;
-    Unit1: number;
-    UntPri1: number;   
-    Pack1: number;  
     OpenQty: number;
+    Unit1: number;
+    Pack1: number;  
+    UntPri1: number;   
     // StartCost: number;
     // LastCost: number;
     // Price1: number;
@@ -31,7 +31,7 @@ export interface Item{
     // DefultUnit: number;
     // DefultVendor: number;
     // QtyLvl: number;
-    // ItmLoc: string;
+    // ItmLoc: s-tring;
     // BarCod1: string;
     // BarCod2: string;
     // BarCod3: string;

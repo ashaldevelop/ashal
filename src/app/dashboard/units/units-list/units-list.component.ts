@@ -1,12 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
 import {MatDialog, MatDialogConfig} from '@angular/material';
-
+import { ToastrService } from 'ngx-toastr';
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+
 import { AshalService } from '../../../shared/ashal.service';
 import { NewUnitComponent } from '../new-unit/new-unit.component';
 import { Unit } from 'src/app/shared/unit';
@@ -30,10 +27,9 @@ export class UnitsListComponent implements OnInit {
   displayedColumns = ['index', 'Eng_Des', 'Arb_Des', 'Unit_No'];
 
   constructor(
+    private tostr: ToastrService,
     private ashalService: AshalService,
-    private route: ActivatedRoute,
     private dialog: MatDialog,
-    private http: HttpClient
   ) { }
 
   ngOnInit() {
@@ -72,6 +68,30 @@ export class UnitsListComponent implements OnInit {
     dialogCallBack.afterClosed().subscribe(() => {
       this.getUnits();
     });
-  } 
+  }
+
+  onEdit(Unit_No: string){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '55%';
+    dialogConfig.data = Unit_No;
+    const dialogCallBack = this.dialog.open(NewUnitComponent, dialogConfig);
+    dialogCallBack.afterClosed().subscribe(() => {
+      this.getUnits();
+    });
+  }
+
+  onDelete(Unit_No: string){
+    this.ashalService.deleteUnit(Unit_No)
+    .subscribe(
+      res => {
+        console.log(res);
+        this.tostr.success('unit deleted');
+        this.getUnits();
+      },
+      err => console.error(err)
+    )
+}
 
 }

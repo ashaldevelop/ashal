@@ -1,9 +1,9 @@
 <mat-toolbar style="background:#31CA9E;color:white">
-  <span style="margin:0 auto" >Add New Category </span>
+  <span style="margin:0 auto" >Add New Accdef </span>
   <button class="btn-dialog-close" mat-mini-fab style="background:white;color:#31CA9E" (click)='onClose()' tabindex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
 
-<form class="normal-form" [formGroup]="newForm" (ngSubmit)="newCat()" autocomplete="off" style="padding:15px 0">
+<form class="normal-form" [formGroup]="newForm" (ngSubmit)="newAccdef()" autocomplete="off" style="padding:15px 0">
 
 
 
@@ -27,6 +27,6 @@
 
   </div>
 
-  <button class="btn btn-success btn-lg" [disabled]="newForm.invalid" type="submit" style="">Save</button>
+  <button class="btn btn-success btn-lg" [disabled]="newForm.invalid" type="submit">Save</button>
 
 </form>

@@ -15,6 +15,8 @@ import { NewItemComponent } from './items/new-item/new-item.component';
 import { CategoryListComponent } from './catogory/category-list/category-list.component';
 import { NewCategoryComponent } from './catogory/new-category/new-category.component';
 import { AccdefListComponent } from './accdef/accdef-list/accdef-list.component';
+import { NewVoucherComponent } from './vouchers/new-voucher/new-voucher.component';
+import { NewAccdefComponent } from './accdef/new-accdef/new-accdef.component';
 
 @NgModule({
   declarations: [SideNavComponent,
@@ -24,7 +26,10 @@ import { AccdefListComponent } from './accdef/accdef-list/accdef-list.component'
     NewItemComponent,
     CategoryListComponent,
     NewCategoryComponent,
-    AccdefListComponent],
+    AccdefListComponent,
+    NewVoucherComponent,
+    NewAccdefComponent,
+  ],
   imports: [
     CommonModule,
     AppRoutingModule,
@@ -33,6 +38,6 @@ import { AccdefListComponent } from './accdef/accdef-list/accdef-list.component'
     FormsModule,
     ReactiveFormsModule
   ],
-  entryComponents:[NewUnitComponent, NewCategoryComponent]
+  entryComponents:[NewUnitComponent, NewCategoryComponent, NewAccdefComponent]
 })
 export class DashboardModule { }

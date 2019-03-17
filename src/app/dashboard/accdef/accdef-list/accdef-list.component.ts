@@ -1,14 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
 import {MatDialog, MatDialogConfig} from '@angular/material';
+import { ToastrService } from 'ngx-toastr';
 
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { AshalService } from '../../../shared/ashal.service';
 import { AccDef } from 'src/app/shared/accdef';
+import { NewAccdefComponent } from '../new-accdef/new-accdef.component';
 
 @Component({
   selector: 'app-accdef-list',
@@ -29,15 +27,13 @@ export class AccdefListComponent implements OnInit {
   displayedColumns = ['index', 'Eng_Des', 'Arb_Des', 'AccDef_No'];
 
   constructor(
+    private tostr: ToastrService,
     private ashalService: AshalService,
-    private route: ActivatedRoute,
     private dialog: MatDialog,
-    private http: HttpClient
   ) { }
 
   ngOnInit() {
     this.getAccDef();
-
   }
 
   getAccDef(){
@@ -51,5 +47,54 @@ export class AccdefListComponent implements OnInit {
       }
     );
   }
+
+  ngAfterViewInit(){
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+  
+  applyFilter(filterValue: string){
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLocaleLowerCase();
+    this.dataSource.filter = filterValue;
+  }
+
+  // new
+  onCreateNew(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '55%';
+    const dialogCallBack = this.dialog.open(NewAccdefComponent, dialogConfig);
+    dialogCallBack.afterClosed().subscribe(() => {
+      this.getAccDef();
+    });
+  }
+
+  // edit
+  onEdit(Unit_No: string){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '55%';
+    dialogConfig.data = Unit_No;
+    const dialogCallBack = this.dialog.open(NewAccdefComponent, dialogConfig);
+    dialogCallBack.afterClosed().subscribe(() => {
+      this.getAccDef();
+    });
+  }
+
+  // delete
+  onDelete(accdef: string){
+    this.ashalService.deleteAccdef(accdef)
+    .subscribe(
+      res => {
+        console.log(res);
+        this.tostr.success('accdef deleted');
+        this.getAccDef();
+      },
+      err => console.error(err)
+    )
+}
 
 }

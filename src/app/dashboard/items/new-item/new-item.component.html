@@ -1,8 +1,14 @@
-<mat-toolbar style="background:#31CA9E;color:white">
-  <span style="margin:0 auto" >Items Define </span>
+<mat-toolbar style='background:#CDEBFE;margin-bottom: 10px'>
+
+  <span style="margin:0 auto;font-size:32px;font-weight: bold">
+    New Item
+  </span>
+  
 </mat-toolbar>
 
 <form class="normal-form col-11" [formGroup]="newForm" (ngSubmit)="newItem()" autocomplete="off" style="margin:0 auto;padding-top:30px">
+
+    <!-- {{ newForm.value | json }} -->
 
     <div class="form-row">
 
@@ -19,8 +25,8 @@
       <div class="col-6">
 
         <label for="exampleFormControlSelect1">Category</label>
-        <select class="form-control" id="exampleFormControlSelect1" style="background-color:turquoise">
-          <option>SELECT</option>
+        <select class="form-control" id="exampleFormControlSelect1" style="background-color:turquoise" formControlName="ItmCat">
+          <option value="">SELECT CATEGORY</option>
           <option *ngFor="let category of categorys" value="{{category.CAT_No}}">{{category.Eng_Des}}</option>
         </select>
 
@@ -52,8 +58,8 @@
       <div class="col-6">
 
         <label for="DefultVendor">Default Supplier</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>SELECT</option>
+        <select class="form-control" id="exampleFormControlSelect1" formControlName="DefultVendor">
+          <option value="">SELECT</option>
           <option *ngFor="let accdef of accdef" value="{{accdef.AccDef_No}}">{{accdef.Eng_Des}}</option>
         </select>
 
@@ -113,8 +119,8 @@
 
       <div class="col-3">
         <label for="ItmTyp">Item Type</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>SELECT</option>
+        <select class="form-control" id="exampleFormControlSelect1" formControlName='ItmTyp'>
+          <option value="">SELECT Item Type</option>
           <option value="0">بضاعة</option>
           <option value="1">مواد خام</option>
           <option value="2">منتج</option>
@@ -130,7 +136,7 @@
 
       <div class="col-3">
         <label for="ItmNature">Tax Calculate</label>
-        <select class="form-control" id="exampleFormControlSelect1">
+        <select class="form-control" id="exampleFormControlSelect1" formControlName="ItmNature">
           <option>SELECT</option>
           <option value="0">Sales price</option>
           <option value="1">Profite margin</option>
@@ -157,7 +163,7 @@
     <div class="form-row">
 
       <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" formControlName="Sn">
         <label class="form-check-label" for="exampleCheck1">Validate patch No.</label>
       </div>
     
@@ -166,21 +172,21 @@
     <div class="form-row">
 
       <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" formControlName="Lot">
         <label class="form-check-label" for="exampleCheck1">Use expire date</label>
       </div>
 
       <div class="col-2" align='right'>
-        <label for="Arb_Des">Request Limit</label>
+        <label>Notify Before</label>
       </div>
     
       <div class="col-3" style="position:relative;top:-8px">
-        <input formControlName='LrnExp' type="text" class="form-control" >
+        <input formControlName='DMY' type="text" class="form-control" >
       </div>
     
     
       <div class="col-3" style="position:relative;top:-8px">
-        <select class="form-control" id="exampleFormControlSelect1">
+        <select class="form-control" id="exampleFormControlSelect1" formControlName="LrnExp">
           <option>SELECT</option>
           <option value="0">Day</option>
           <option value="1">Month</option>
@@ -203,191 +209,52 @@
     <!-- units -->
     <h3>Units</h3>
 
+    <!-- unit row 1 -->
+
     <div class="form-row">
         
       <div class="col-2">
         <label for="exampleFormControlSelect1">Unit</label>
-        <select  class="form-control" id="exampleFormControlSelect1" style="background-color:turquoise">
-          <option>SELECT</option>
-          <option *ngFor="let unit of units">{{unit.Eng_Des}}</option>
+        <select  class="form-control" id="exampleFormControlSelect1" style="background-color:turquoise" formControlName="Unit1">
+          <option value="">SELECT UNIT 1</option>
+          <option *ngFor="let unit of units" value="{{unit.Unit_No}}">{{unit.Eng_Des}}</option>
         </select>
       </div>
 
       <div class="col-1">
-        <label for="Pack1">التعبئة</label>
+        <label for="Pack1">Pack</label>
         <input formControlName='Pack1' type="text" class="form-control" style="background-color:turquoise">
       </div>
 
       <div class="col-1">
-        <label for="UntPri1">سعر البيع</label>
+        <label for="UntPri1">Unit Price</label>
         <input formControlName='UntPri1' type="text" class="form-control" style="background-color:turquoise">
       </div>
 
       <div class="col-1">
-        <label for="Eng_Des">الكمية</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <label>Quantity</label>
+        <input type="text" class="form-control" >
       </div>
 
       <div class="col-1">
-        <label for="Eng_Des">التكلفة</label>
-        <input formControlName='Eng_Des' type="text" class="form-control" >
+        <label>Cost</label>
+        <input type="text" class="form-control" >
       </div>
 
       <div class="col-3">
-        <label for="BarCod1">الباركود</label>
+        <label for="BarCod1">Barcode</label>
         <input formControlName='BarCod1' type="text" class="form-control" >
       </div>
 
       <div class="col-3">
-        <label for="exampleFormControlFile1">الافتراضي</label>
-        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        
+        <label>Default</label>
+        <input type="radio" class="form-check-input" value="0" formControlName="DefultUnit">
       </div>
 
     </div>
 
 
-    <div class="form-row">
-      
-      <div class="col-2">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>SELECT</option>
-          <option *ngFor="let unit of units">{{unit.Eng_Des}}</option>
-        </select>
-      </div>
-
-      <div class="col-1">
-        <input formControlName='Pack2' type="text" class="form-control" >
-      </div>
-
-      <div class="col-1">
-        <input formControlName='UntPri2' type="text" class="form-control" >
-      </div>
-
-      <div class="col-1">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
-      </div>
-
-      <div class="col-1">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
-      </div>
-
-      <div class="col-3">
-        <input formControlName='BarCod2' type="text" class="form-control" >
-      </div>
-
-      <div class="col-3">
-        <input type="file" class="form-control-file" id="exampleFormControlFile1">
-      </div>
-
-    </div>
-
-
-    <div class="form-row">
-      
-      <div class="col-2">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>SELECT</option>
-          <option *ngFor="let unit of units">{{unit.Eng_Des}}</option>
-        </select>
-      </div>
-
-      <div class="col-1">
-        <input formControlName='Pack3' type="text" class="form-control" >
-      </div>
-
-      <div class="col-1">
-        <input formControlName='UntPri3' type="text" class="form-control" >
-      </div>
-
-      <div class="col-1">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
-      </div>
-
-      <div class="col-1">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
-      </div>
-
-      <div class="col-3">
-        <input formControlName='BarCod3' type="text" class="form-control" >
-      </div>
-
-      <div class="col-3">
-        <input type="file" class="form-control-file" id="exampleFormControlFile1">
-      </div>
-
-    </div>
-
-
-    <div class="form-row">
-      
-      <div class="col-2">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>SELECT</option>
-          <option *ngFor="let unit of units">{{unit.Eng_Des}}</option>
-        </select>
-      </div>
-
-      <div class="col-1">
-        <input formControlName='Pack4' type="text" class="form-control" >
-      </div>
-
-      <div class="col-1">
-        <input formControlName='UntPri4' type="text" class="form-control" >
-      </div>
-
-      <div class="col-1">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
-      </div>
-
-      <div class="col-1">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
-      </div>
-
-      <div class="col-3">
-        <input formControlName='BarCod4' type="text" class="form-control" >
-      </div>
-
-      <div class="col-3">
-        <input type="file" class="form-control-file" id="exampleFormControlFile1">
-      </div>
-
-    </div>
-
-
-    <div class="form-row">
-      
-      <div class="col-2">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>SELECT</option>
-          <option *ngFor="let unit of units">{{unit.Eng_Des}}</option>
-        </select>
-      </div>
-
-      <div class="col-1">
-        <input formControlName='Pack5' type="text" class="form-control" >
-      </div>
-
-      <div class="col-1">
-        <input formControlName='UntPri5' type="text" class="form-control" >
-      </div>
-
-      <div class="col-1">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
-      </div>
-
-      <div class="col-1">
-        <input formControlName='Eng_Des' type="text" class="form-control" >
-      </div>
-
-      <div class="col-3">
-        <input formControlName='BarCod5' type="text" class="form-control" >
-      </div>
-
-      <div class="col-3">
-        <input type="file" class="form-control-file" id="exampleFormControlFile1">
-      </div>
-
-    </div>
 
     <!-- prices -->
     <h4>Prices(Default Price)</h4>

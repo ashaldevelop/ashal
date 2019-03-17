@@ -4,21 +4,20 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { ToastrService } from 'ngx-toastr';
 import { AshalService } from '../../../shared/ashal.service';
-import { Unit } from 'src/app/shared/unit';
-
+import { AccDef } from 'src/app/shared/accdef';
 
 @Component({
-  selector: 'app-new-unit',
-  templateUrl: './new-unit.component.html',
-  styleUrls: ['./new-unit.component.css']
+  selector: 'app-new-accdef',
+  templateUrl: './new-accdef.component.html',
+  styleUrls: ['./new-accdef.component.css']
 })
-export class NewUnitComponent implements OnInit {
+export class NewAccdefComponent implements OnInit {
 
   constructor(
     private tostr: ToastrService,
     private ashalService: AshalService,
     public fb: FormBuilder,
-    public dialogRef: MatDialogRef<NewUnitComponent>,
+    public dialogRef: MatDialogRef<NewAccdefComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
     ) {
   }
@@ -37,7 +36,7 @@ export class NewUnitComponent implements OnInit {
   // set form values if edit
   private setValues(){
 
-    this.ashalService.viewUnit(this.data).subscribe(
+    this.ashalService.viewAccdef(this.data).subscribe(
       res => {
         this.newForm.patchValue({
           Eng_Des: res.Eng_Des,
@@ -55,26 +54,26 @@ export class NewUnitComponent implements OnInit {
   get Arb_Des() { return this.newForm.get('Arb_Des') }
 
 
-  // add new unit
-  public newUnit() {
+  // new or update accdef
+  public newAccdef() {
 
     if(!this.newForm.valid) return null;
     const vals = this.newForm.value;
     
-    const unit: Unit = {
+    const accdef: AccDef = {
       Eng_Des: this.Eng_Des.value,
       Arb_Des: this.Arb_Des.value
     }
 
 
-    // if updat
+    // if update
     if(this.data){
-      this.ashalService.updateUnit(this.data, unit)
+      this.ashalService.updateAccdef(this.data, accdef)
       .subscribe(
         res => {
           console.log(res);
           this.dialogRef.close();
-          this.tostr.success('unit update');
+          this.tostr.success('accdef updated');
         },
         err => console.error(err)
       )
@@ -82,12 +81,12 @@ export class NewUnitComponent implements OnInit {
 
     // if new
     else{
-      this.ashalService.newUnit(unit)
+      this.ashalService.newAccDef(accdef)
       .subscribe(
         res => {
           console.log(res);
           this.dialogRef.close();
-          this.tostr.success('New Unit Created');
+          this.tostr.success('New AccDef Created');
         },
         err => console.error(err)
       )

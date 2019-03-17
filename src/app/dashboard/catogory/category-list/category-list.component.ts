@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
 import {MatDialog, MatDialogConfig} from '@angular/material';
+import { ToastrService } from 'ngx-toastr';
 
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
@@ -30,10 +27,9 @@ export class CategoryListComponent implements OnInit {
   displayedColumns = ['index', 'Eng_Des', 'Arb_Des', 'CAT_No'];
 
   constructor(
+    private tostr: ToastrService,
     private ashalService: AshalService,
-    private route: ActivatedRoute,
     private dialog: MatDialog,
-    private http: HttpClient
   ) { }
 
   ngOnInit() {
@@ -72,6 +68,30 @@ export class CategoryListComponent implements OnInit {
     dialogCallBack.afterClosed().subscribe(() => {
       this.getCategorys();
     });
-  } 
+  }
+
+  onEdit(Unit_No: string){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '55%';
+    dialogConfig.data = Unit_No;
+    const dialogCallBack = this.dialog.open(NewCategoryComponent, dialogConfig);
+    dialogCallBack.afterClosed().subscribe(() => {
+      this.getCategorys();
+    });
+  }
+
+  onDelete(CAT_No: string){
+    this.ashalService.deleteCategory(CAT_No)
+    .subscribe(
+      res => {
+        console.log(res);
+        this.tostr.success('category deleted');
+        this.getCategorys();
+      },
+      err => console.error(err)
+    )
+  }
 
 }

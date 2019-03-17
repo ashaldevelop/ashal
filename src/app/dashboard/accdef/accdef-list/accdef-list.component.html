@@ -36,7 +36,7 @@
     <ng-container matColumnDef="AccDef_No">
       <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
       <mat-cell *matCellDef="let accdef">
-        <button mat-icon-button style='margin-right:40px' (click)="onEditaccdef(accdef.AccDef_No)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button style='margin-right:40px' (click)="onEdit(accdef.AccDef_No)"><mat-icon>edit</mat-icon></button>
         <button mat-icon-button color='warn' (click)="onDelete(accdef.AccDef_No)"><mat-icon>delete_outline</mat-icon></button>
       </mat-cell>
     </ng-container>

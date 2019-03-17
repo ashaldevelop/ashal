@@ -19,7 +19,7 @@ class Item extends JsonResource
     
         // return parent::toArray($request);
         return [
-            'Item_No' => $this->Item_No,
+            'Itm_No' => $this->Itm_No,
             'Arb_Des' => $this->Arb_Des,
             'Eng_Des' => $this->Eng_Des,
 

@@ -3,7 +3,7 @@
   <span style="margin:0 auto;font-size:32px;font-weight: bold">
     UNITS
   </span>
-  <button mat-flat-button (click)='onCreateUnit()' style="font-size:18px;background:#0C457E;color:white;border-radius: 10px;">
+  <button mat-flat-button (click)='onCreateNew()' style="font-size:18px;background:#0C457E;color:white;border-radius: 10px;">
     <mat-icon style="margin-right:10px;color:white">add</mat-icon>Add Unit
   </button>
   
@@ -36,7 +36,7 @@
     <ng-container matColumnDef="Unit_No">
       <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
       <mat-cell *matCellDef="let unit">
-        <button mat-icon-button style='margin-right:40px' (click)="onEditUnit(unit.Unit_No)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button style='margin-right:40px' (click)="onEdit(unit.Unit_No)"><mat-icon>edit</mat-icon></button>
         <button mat-icon-button color='warn' (click)="onDelete(unit.Unit_No)"><mat-icon>delete_outline</mat-icon></button>
       </mat-cell>
     </ng-container>

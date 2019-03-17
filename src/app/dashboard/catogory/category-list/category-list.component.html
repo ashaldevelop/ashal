@@ -36,8 +36,8 @@
     <ng-container matColumnDef="CAT_No">
       <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
       <mat-cell *matCellDef="let category">
-        <button mat-icon-button style='margin-right:40px' (click)="onEditcategory(category.category_No)"><mat-icon>edit</mat-icon></button>
-        <button mat-icon-button color='warn' (click)="onDelete(category.category_No)"><mat-icon>delete_outline</mat-icon></button>
+        <button mat-icon-button style='margin-right:40px' (click)="onEdit(category.CAT_No)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color='warn' (click)="onDelete(category.CAT_No)"><mat-icon>delete_outline</mat-icon></button>
       </mat-cell>
     </ng-container>
 

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
-import { HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators, FormsModule } from '@angular/forms';
 
 import { ToastrService } from 'ngx-toastr';
@@ -8,6 +6,8 @@ import { AshalService } from '../../../shared/ashal.service';
 import { Category } from 'src/app/shared/category';
 import { Unit } from 'src/app/shared/unit';
 import { AccDef } from 'src/app/shared/accdef';
+
+import { Item } from 'src/app/shared/item';
 
 
 @Component({
@@ -20,73 +20,91 @@ export class NewItemComponent implements OnInit {
   units: Unit[];
   categorys: Category[];
   accdef: AccDef[];
-  newForm: FormGroup;
 
   constructor(
     private tostr: ToastrService,
-    private router: Router,
     private ashalService: AshalService,
     public fb: FormBuilder,
-    private http: HttpClient,
     ) {
   }
 
-  ngOnInit() {
-    this.unitForm();
-    this.getCategorys();
-    this.getUnits();
-    this.getAccDef();
-  }
+  newForm = this.fb.group({
 
-  getCategorys(){
-    this.ashalService.getCategorys().subscribe(
-      categorys =>{
-         this.categorys = categorys
-         console.log(this.categorys)
-       } 
-    )
-  }
+    Itm_No : [''],
+    Group_Code : [''],
+    ItmCat : [''],
+    Arb_Des : [''],
+    Eng_Des : [''],
+    DefultVendor : [''],
+    StartCost : [''],
+    AvrageCost : [''],
+    LastCost : [''],
+    OpenQty : [''],
+    Shipping_Cost : [''],
+    SeaCost : [''],
+    QtyMax : [''],
+    ItmTyp : [''],
+    Tax : [''],
+    ItmNature : [''],
+    QtyLvl : [''],
+    ItmLoc : [''],
+    Sn : [''],
+    Lot : [''],
+    DMY : [''],
+    LrnExp : [''],
+    Note : [''],
 
-  getAccDef(){
-    this.ashalService.getAccDef().subscribe(
-      accdef =>{
-         this.accdef = accdef
-         console.log(this.accdef)
-       } 
-    )
-  }
+    // units
 
-  getUnits(){
-    this.ashalService.getUnits().subscribe(
-      units =>{
-         this.units = units
-         console.log(this.units)
-       } 
-    )
-  }
+    // DefultUnit : this.fb.group({
+    //   DefultUnit: ['']
+    // }),
+    
+    DefultUnit : ['0'],
+    
+    Unit1 : [''],
+    Pack1 : [''],
+    UntPri1 : [''],
+    BarCod1 : [''],
 
-  private unitForm() {
-    this.newForm = this.fb.group({
-      Eng_Des: ['', [Validators.required]],
-      Arb_Des: ['', [Validators.required]]
-    });
-  }
+    // prices
+    Price1 : [''],
+    Price2 : [''],
+    Price3 : [''],
+    Price4 : [''],
+    Price5 : [''],
+    Price6 : [''],
 
+  });
+  
   // Using getters will make your code look pretty
+  get Itm_No() { return this.newForm.get('Itm_No') }
+  get ItmCat() { return this.newForm.get('ItmCat') }
   get Eng_Des() { return this.newForm.get('Eng_Des') }
   get Arb_Des() { return this.newForm.get('Arb_Des') }
+  get OpenQty() { return this.newForm.get('OpenQty') }
+  get Unit1() { return this.newForm.get('Unit1') }
+  get Pack1() { return this.newForm.get('Pack1') }
+  get UntPri1() { return this.newForm.get('UntPri1') }
 
-  public newUnit() {
+
+  public newItem() {
 
     if (!this.newForm.valid) return null;
     const vals = this.newForm.value;
     
-    const unit: Unit = {
+    const item: Item = {
+      Itm_No: this.Itm_No.value,
+      ItmCat: this.ItmCat.value,
       Eng_Des: this.Eng_Des.value,
-      Arb_Des: this.Arb_Des.value
+      Arb_Des: this.Arb_Des.value,
+      OpenQty: this.OpenQty.value,
+      Unit1: this.Unit1.value,
+      Pack1: this.Pack1.value,
+      UntPri1: this.UntPri1.value
     }
 
-    this.ashalService.newUnit(unit)
+    this.ashalService.newItem(item)
     .subscribe(
       res => {
         console.log(res);
@@ -97,5 +115,32 @@ export class NewItemComponent implements OnInit {
 
 
   }
+
+  ngOnInit() {
+    this.getOptions();
+  }
+
+  getOptions(){
+    this.ashalService.getCategorys().subscribe(
+      categorys =>{
+         this.categorys = categorys
+       } 
+    );
+
+    this.ashalService.getAccDef().subscribe(
+      accdef =>{
+         this.accdef = accdef
+       } 
+    );
+
+    this.ashalService.getUnits().subscribe(
+      units =>{
+         this.units = units
+       } 
+    );
+
+  }
+
+
 
 }
