@@ -58,9 +58,9 @@
       <div class="col-6">
 
         <label for="DefultVendor">Default Supplier</label>
-        <select class="form-control" id="exampleFormControlSelect1" formControlName="DefultVendor">
-          <option value="">SELECT</option>
-          <option *ngFor="let accdef of accdef" value="{{accdef.AccDef_No}}">{{accdef.Eng_Des}}</option>
+        <select class="form-control" id="exampleFormControlSelect1" formControlName="accdef">
+          <option value="">SELECT Supplier</option>
+          <option *ngFor="let accdef of accdefs" value="{{accdef.AccDef_No}}">{{accdef.Eng_Des}}</option>
         </select>
 
       </div>
@@ -206,11 +206,7 @@
     </div>
 
 
-    <!-- units -->
-    <h3>Units</h3>
-
     <!-- unit row 1 -->
-
     <div class="form-row">
         
       <div class="col-2">
@@ -243,13 +239,159 @@
 
       <div class="col-3">
         <label for="BarCod1">Barcode</label>
-        <input formControlName='BarCod1' type="text" class="form-control" >
+        <input type="text" class="form-control" >
+      </div>
+
+      <div class="col-3" class="def-unit-radio">
+        <input type="radio" class="form-check-input" value="1" formControlName="DefultUnit">
+      </div>
+
+    </div>
+
+
+    <!-- unit row 2 -->
+    <div class="form-row">
+        
+      <div class="col-2">
+        <select  class="form-control" id="exampleFormControlSelect1" formControlName="Unit2">
+          <option value="">SELECT UNIT 2</option>
+          <option *ngFor="let unit of units" value="{{unit.Unit_No}}">{{unit.Eng_Des}}</option>
+        </select>
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Pack2' type="text" class="form-control">
+      </div>
+
+      <div class="col-1">
+        <input formControlName='UntPri2' type="text" class="form-control">
+      </div>
+
+      <div class="col-1">
+        <input type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input type="text" class="form-control" >
       </div>
 
       <div class="col-3">
+        <input type="text" class="form-control" >
+      </div>
+
+      <div class="col-3" class="def-unit-radio">
+        <input type="radio" class="form-check-input" value="2" formControlName="DefultUnit">
+      </div>
+
+    </div>
+
+
+    <!-- unit row 3 -->
+    <div class="form-row">
         
-        <label>Default</label>
-        <input type="radio" class="form-check-input" value="0" formControlName="DefultUnit">
+      <div class="col-2">
+        <select  class="form-control" id="exampleFormControlSelect1" formControlName="Unit3">
+          <option value="">SELECT UNIT 3</option>
+          <option *ngFor="let unit of units" value="{{unit.Unit_No}}">{{unit.Eng_Des}}</option>
+        </select>
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Pack3' type="text" class="form-control">
+      </div>
+
+      <div class="col-1">
+        <input formControlName='UntPri3' type="text" class="form-control">
+      </div>
+
+      <div class="col-1">
+        <input type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <input type="text" class="form-control" >
+      </div>
+
+      <div class="col-3" class="def-unit-radio">
+        <input type="radio" class="form-check-input" value="3" formControlName="DefultUnit">
+      </div>
+
+    </div>
+
+
+    <!-- unit row 4 -->
+    <div class="form-row">
+        
+      <div class="col-2">
+        <select  class="form-control" id="exampleFormControlSelect1" formControlName="Unit4">
+          <option value="">SELECT UNIT 4</option>
+          <option *ngFor="let unit of units" value="{{unit.Unit_No}}">{{unit.Eng_Des}}</option>
+        </select>
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Pack4' type="text" class="form-control">
+      </div>
+
+      <div class="col-1">
+        <input formControlName='UntPri4' type="text" class="form-control">
+      </div>
+
+      <div class="col-1">
+        <input type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <input type="text" class="form-control" >
+      </div>
+
+      <div class="col-3" class="def-unit-radio">
+        <input type="radio" class="form-check-input" value="4" formControlName="DefultUnit">
+      </div>
+
+    </div>
+
+
+    <!-- unit row 4 -->
+    <div class="form-row">
+        
+      <div class="col-2">
+        <select  class="form-control" id="exampleFormControlSelect1" formControlName="Unit5">
+          <option value="">SELECT UNIT 5</option>
+          <option *ngFor="let unit of units" value="{{unit.Unit_No}}">{{unit.Eng_Des}}</option>
+        </select>
+      </div>
+
+      <div class="col-1">
+        <input formControlName='Pack5' type="text" class="form-control">
+      </div>
+
+      <div class="col-1">
+        <input formControlName='UntPri5' type="text" class="form-control">
+      </div>
+
+      <div class="col-1">
+        <input type="text" class="form-control" >
+      </div>
+
+      <div class="col-1">
+        <input type="text" class="form-control" >
+      </div>
+
+      <div class="col-3">
+        <input type="text" class="form-control" >
+      </div>
+
+      <div class="col-3" class="def-unit-radio">
+        <input type="radio" class="form-check-input" value="5" formControlName="DefultUnit">
       </div>
 
     </div>
