@@ -11,6 +11,24 @@ use Illuminate\Support\Facades\DB;
 
 class VoucherController extends Controller{
 
+    public function sumActiveAccdef(){
+        $accdefNo = $_GET['accdefNo'];
+
+        $balance = DB::table('T_GDDET')
+        ->leftJoin('T_GDHEAD', 'T_GDDET.gdID', '=', 'T_GDHEAD.gdhead_ID')->where([ ['T_GDDET.AccNo', '=' ,$accdefNo],  ['T_GDHEAD.gdLok', '=' ,0]])
+        ->sum('gdValue');
+
+        return $balance;
+
+    }
+
+    public function checkGdNo(){
+        $gdNo = $_GET['gdNo'];
+        if(GdHead::where('gdNo', $gdNo)->exists()){
+            return response()->json('this code no alraedy exist');
+        }
+    }
+
     public function accdefBalance(){
         GdDetails::select('gdValue')->where('gdTyp', 11)->pluck('gdNo')->toArray();
     }
@@ -19,10 +37,10 @@ class VoucherController extends Controller{
         $newVoucherDefaults = (object) [
             'newGdheadID' => GdHead::select('gdhead_ID')->latest('gdhead_ID')->first()['gdhead_ID'] + 1,
             'newGdNo' => GdHead::select('gdNo')->latest('gdhead_ID')->first()['gdNo'] + 1,
-            'currency' => DB::table('T_Curency')->get(),
+            'currencys' => DB::table('T_Curency')->get(),
             'mndob' => DB::table('T_Mndob')->where('St', 0)->get(),
-            'cst' => DB::table('T_CstTbl')->where('St', 0)->get(),
-            'accdef' => AccDef::where('Lev', 0)->get(),
+            'csts' => DB::table('T_CstTbl')->where('St', 0)->get(),
+            'accdefs' => AccDef::where('Lev', 0)->get(),
         ];
         return response()->json($newVoucherDefaults);
         

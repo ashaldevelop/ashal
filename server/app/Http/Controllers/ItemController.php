@@ -26,9 +26,31 @@ class ItemController extends Controller{
         $item->LastCost= $request->input('LastCost');
         $item->QtyMax= $request->input('QtyMax'); // max qty
         $item->ItmTyp= $request->input('ItmTyp');
-        
-        
-
+        $item->AvrageCost= $request->input('AvrageCost');
+        $item->QtyLvl= $request->input('QtyLvl');
+        $item->ItmLoc= $request->input('ItmLoc');
+        $item->Shipping_Cost= $request->input('Shipping_Cost');
+        $item->SeaCost= $request->input('SeaCost');
+        $item->Note= $request->input('Note');
+        $item->ItmNature= $request->input('ItmNature');
+        $item->Tax= $request->input('Tax');
+        $item->ItmPOS= $request->input('ItmPOS');
+    
+        // *****  Start Fathi_17/03/2019   *****
+        //Prices
+        $item->Price1= $request->input('Price1');
+        $item->Price2= $request->input('Price2');
+        $item->Price3= $request->input('Price3');
+        $item->Price4= $request->input('Price4');
+        $item->Price5= $request->input('Price5');
+        $item->Price6= $request->input('Price6');
+        //Barcodes
+        $item->BarCod1= $request->input('BarCod1');
+        $item->BarCod2= $request->input('BarCod2');
+        $item->BarCod3= $request->input('BarCod3');
+        $item->BarCod4= $request->input('BarCod4');
+        $item->BarCod5= $request->input('BarCod5');
+        // *******  End Fathi_17/03/2019   ******
         // unit 1
         $item->Unit1= $request->input('Unit1');
         $item->Pack1= $request->input('Pack1');

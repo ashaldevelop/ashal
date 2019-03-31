@@ -26,8 +26,8 @@ class Item extends JsonResource
             'ItemCatEng_Des' => $this->category->Eng_Des,
             'ItemCatArb_Des' => $this->category->Arb_Des,
 
-            'Unit1_Eng_Des' => $this->unit->Eng_Des,
-            'Unit1_Arb_Des' => $this->unit->Arb_Des,
+            'Unit1_Eng_Des' => DB::table('T_Unit')->where('Unit_No', $this->Unit1)->value('Eng_Des'),
+            'Unit1_Arb_Des' => DB::table('T_Unit')->where('Unit_No', $this->Unit1)->value('Arb_Des'),
             'Unit2_Eng_Des' => DB::table('T_Unit')->where('Unit_No', $this->Unit2)->value('Eng_Des'),
             'Unit2_Arb_Des' => DB::table('T_Unit')->where('Unit_No', $this->Unit2)->value('Arb_Des'),
 

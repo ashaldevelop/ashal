@@ -58,7 +58,7 @@
         <div class="form-group col-3" align='right'>
 
             <label for="" >الكود</label>
-            <input type="text" class="form-control" value="{{newGdNo}}" disabled>
+            <input type="text" class="form-control" value="{{newGdNo}}" (blur)="checkGdNo($event.target.value)">
 
         </div>
          
@@ -137,8 +137,17 @@
                 <input type="text" class="form-control" formControlName="daen" (input)="onChangeDaenValue($event.target.value, i)">
             </td>
             <td>
-                <input type="text" class="form-control">
+
+
+                <select class="form-control" id="exampleFormControlSelect1" formControlName="cst">
+                    <option value="">choose Cost Center</option>
+                    <option *ngFor="let cst of csts" value="{{cst.Cst_No}}">{{cst.Arb_Des}}</option>
+                </select>
+
+
             </td>
+
+
             <td>
                 <input type="text" class="form-control" formControlName="InvNo">
             </td>
@@ -171,11 +180,7 @@
         <div class="form-group col-3" align='right'>
 
             <label for="" >الرصيد</label>
-            <select class="form-control" id="exampleFormControlSelect1" formControlName="accdefActive" disabled>
-                <option value=""></option>
-                <option value="{{accdef.AccDef_No}}" *ngFor="let accdef of accdefs">{{accdef.Arb_Des}}</option>
-            </select>
-
+            <input type="text" [value]='balance' disabled>
         </div>
 
         <div class="form-group col-3" align='right'>

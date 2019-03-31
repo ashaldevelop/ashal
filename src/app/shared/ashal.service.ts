@@ -114,5 +114,14 @@ export class AshalService {
     return this.http.post<Voucher>('api/new-voucher', voucher)
   }
 
+  checkGdNo(gdNo: string){
+    let params = new HttpParams().set('gdNo', gdNo);
+    return this.http.get('api/check-gd-no', { params })
+  }
+d
+  getAccdefBalance(accdefNo: string){
+    let params = new HttpParams().set('accdefNo', accdefNo);
+    return this.http.get('api/sum-active-accdef', { params })
+  }
 
 }

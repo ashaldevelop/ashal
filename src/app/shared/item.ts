@@ -12,11 +12,35 @@ export interface Item{
     // Shipping_Cost: number; 
     QtyMax: number;
     ItmTyp: number; 
-    // Price1: number;
-    // Price2: number;
-    // Price4: number;
-    // Price5: number;
-    // Price6: number;
+
+    // *****  Start Fathi_17/03/2019   *****
+    Price1: number;
+    Price2: number;
+    Price3: number;
+    Price4: number;
+    Price5: number;
+    Price6: number;
+
+    BarCod1: string;
+    BarCod2: string;
+    BarCod3: string;
+    BarCod4: string; 
+    BarCod5: string; 
+
+    AvrageCost: number;
+    QtyLvl: number;
+    ItmLoc:string;
+    Group_Code:string;
+    Shipping_Cost:number;
+    SeaCost:number;
+    Note:string;
+    ItmNature:number;
+    Tax:number;
+    ItmPOS:number;
+
+
+    // *******  End Fathi_17/03/2019   ******
+
     // Unit2: number;
     // UntPri2: number;
     // Pack2: number;
@@ -32,11 +56,6 @@ export interface Item{
     // DefultUnit: number;
     // QtyLvl: number;
     // ItmLoc: s-tring;
-    // BarCod1: string;
-    // BarCod2: string;
-    // BarCod3: string;
-    // BarCod4: string; 
-    // BarCod5: string; 
     // Lot: number;
     // LrnExp: number;
     // DMY: number; 

@@ -53,39 +53,46 @@ export class NewItemComponent implements OnInit {
     DMY : [''],
     LrnExp : [''],
     Note : [''],
-
+    ItmPOS : ['0'], 
+ 
     // units
 
     // DefultUnit : this.fb.group({
     //   DefultUnit: ['']
     // }),
     
-    DefultUnit : ['0'],
+    DefultUnit : ['1'],
     
     // unit 1
     Unit1 : [''],
     Pack1 : [''],
     UntPri1 : [''],
+    BarCod1 : [''],
 
     // unit 2
     Unit2 : [''],
     Pack2 : [''],
     UntPri2 : [''],
+    BarCod2 : [''],
+
 
     // unit 3
     Unit3 : [''],
     Pack3 : [''],
     UntPri3 : [''],
+    BarCod3 : [''],
 
     // unit 4
     Unit4 : [''],
     Pack4 : [''],
     UntPri4 : [''],
+    BarCod4 : [''],
 
     // unit 5
     Unit5 : [''],
     Pack5 : [''],
     UntPri5 : [''],
+    BarCod5 : [''],
 
     // prices
     Price1 : [''],
@@ -106,8 +113,18 @@ export class NewItemComponent implements OnInit {
   get accdef() { return this.newForm.get('accdef') }
   get StartCost() { return this.newForm.get('StartCost') }
   get LastCost() { return this.newForm.get('LastCost') }
+  get AvrageCost() { return this.newForm.get('AvrageCost') }
   get QtyMax() { return this.newForm.get('QtyMax') }
   get ItmTyp() { return this.newForm.get('ItmTyp') }
+  get QtyLvl() { return this.newForm.get('QtyLvl') }
+  get ItmLoc() { return this.newForm.get('ItmLoc') }
+  get Group_Code() { return this.newForm.get('Group_Code') }
+  get Shipping_Cost() { return this.newForm.get('Shipping_Cost') }
+  get SeaCost() { return this.newForm.get('SeaCost') }
+  get Note() { return this.newForm.get('Note') }
+  get ItmNature() { return this.newForm.get('ItmNature') }
+  get Tax() { return this.newForm.get('Tax') }
+  get ItmPOS() { return this.newForm.get('ItmPOS') }
 
 
   // unit 1
@@ -135,6 +152,21 @@ export class NewItemComponent implements OnInit {
   get Pack5() { return this.newForm.get('Pack5') }
   get UntPri5() { return this.newForm.get('UntPri5') }
 
+  
+  // prices
+  get Price1() { return this.newForm.get('Price1') }
+  get Price2() { return this.newForm.get('Price2') }
+  get Price3() { return this.newForm.get('Price3') }
+  get Price4() { return this.newForm.get('Price4') }
+  get Price5() { return this.newForm.get('Price5') }
+  get Price6() { return this.newForm.get('Price6') }
+
+  //Barcodes
+  get BarCod1() { return this.newForm.get('BarCod1') } 
+  get BarCod2() { return this.newForm.get('BarCod2') } 
+  get BarCod3() { return this.newForm.get('BarCod3') } 
+  get BarCod4() { return this.newForm.get('BarCod4') } 
+  get BarCod5() { return this.newForm.get('BarCod5') } 
 
   public newItem() {
 
@@ -150,9 +182,31 @@ export class NewItemComponent implements OnInit {
       DefultVendor: this.accdef.value,
       StartCost: this.StartCost.value,
       LastCost: this.LastCost.value,
+      AvrageCost: this.LastCost.value,
       QtyMax: this.QtyMax.value,
       ItmTyp: this.ItmTyp.value,
-
+      QtyLvl: this.QtyLvl.value,
+      ItmLoc: this.ItmLoc.value,
+      Group_Code: this.Group_Code.value,
+      Shipping_Cost: this.Shipping_Cost.value,
+      SeaCost: this.SeaCost.value,
+      Note: this.Note.value,
+      ItmNature: this.ItmNature.value,
+      Tax: this.Tax.value,
+      ItmPOS: this.ItmPOS.value,
+      //Prices
+      Price1:this.Price1.value,
+      Price2:this.Price2.value,
+      Price3:this.Price3.value,
+      Price4:this.Price4.value,
+      Price5:this.Price5.value,
+      Price6:this.Price6.value,
+      //Barcodes
+      BarCod1:this.BarCod1.value,
+      BarCod2:this.BarCod2.value,
+      BarCod3:this.BarCod3.value,
+      BarCod4:this.BarCod4.value,
+      BarCod5:this.BarCod5.value,
       // unit1
       Unit1: this.Unit1.value,
       Pack1: this.Pack1.value,

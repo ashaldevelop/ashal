@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators, FormsModule, FormArray } from '@angular/forms';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 import { ToastrService } from 'ngx-toastr';
 import { AshalService } from '../../../shared/ashal.service';
@@ -19,7 +20,9 @@ export class NewVoucherComponent implements OnInit {
   newGdheadID: number;
   newGdNo: number;
   accdefs: object;
-  currency: object;
+  currencys: object;
+  csts: object;
+  balance:any;
 
   constructor(
     private tostr: ToastrService,
@@ -39,8 +42,9 @@ export class NewVoucherComponent implements OnInit {
         if(res){
           this.newGdheadID = res.newGdheadID;
           this.newGdNo = res.newGdNo;
-          this.accdefs = res.accdef;
-          this.currency = res.currency;
+          this.accdefs = res.accdefs;
+          this.currencys = res.currencys;
+          this.csts = res.csts;
         }
       }
     );
@@ -56,6 +60,8 @@ export class NewVoucherComponent implements OnInit {
     daenTotal : [0, Validators.required],
     gdMem : ['', Validators.required],
     accdefActive : [''],
+    currency : [''],
+    balance : [''],
 
     
     details: this.fb.array([]) // details
@@ -81,6 +87,7 @@ export class NewVoucherComponent implements OnInit {
       gdDes: [''],
       madeen: [0],
       daen: [0],
+      cst: [''],
       gdValue: [''],
       InvNo: [''],
     });
@@ -130,7 +137,18 @@ export class NewVoucherComponent implements OnInit {
   accdefChanged(value, i){
     this.detailsForm.controls[i].patchValue({AccName: value});
     this.detailsForm.controls[i].patchValue({AccNo: value});
+    this.getActiveAccdefBalance(this.detailsForm.controls[i]['controls']['AccNo'].value);
     this.accdefActive.setValue(this.detailsForm.controls[i]['controls']['AccNo'].value);
+  }
+
+  getActiveAccdefBalance(AccNo:string){
+    this.ashalService.getAccdefBalance(AccNo)
+    .subscribe(
+      res => {
+        this.balance = res;
+      },
+      err => console.error(err)
+    )
   }
 
 
@@ -167,6 +185,16 @@ export class NewVoucherComponent implements OnInit {
     this.madeenTotal.setValue(madeenTotal);
     this.daenTotal.setValue(daenTotal);
     this.diff = this.madeenTotal.value - this.daenTotal.value;
+  }
+
+  checkGdNo(gdNo:string){
+    this.ashalService.checkGdNo(gdNo)
+    .subscribe(
+      res => {
+        console.log(res);
+      },
+      err => console.error(err)
+    )
   }
 
 }
