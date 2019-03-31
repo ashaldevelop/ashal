@@ -46,3 +46,7 @@ Route::get('items-list', 'ItemController@index');
 Route::get('item/{Itm_No}', 'ItemController@view');
 Route::post('new-item', 'ItemController@save');
 Route::delete('item/{Itm_No}', 'ItemController@delete');
+
+// voucehrs routes
+Route::get('new-voucher-defaults', 'VoucherController@newVoucherDefaults');
+Route::post('new-voucher', 'VoucherController@save');

@@ -6,6 +6,7 @@ import { Unit } from './unit';
 import { Category } from './category';
 import { AccDef } from './accdef';
 import { Item } from './item';
+import { Voucher } from './voucher';
 
 @Injectable({
   providedIn: 'root'
@@ -87,7 +88,6 @@ export class AshalService {
 
 
   // items
-
   getItems(): Observable<Item[]>{
     return this.http
       .get<Item[]>('api/items-list')
@@ -98,16 +98,20 @@ export class AshalService {
     return this.http.post<Item>('api/new-item', item)
   }
 
-  // viewUnit(Unit_No: string): Observable<Unit>{
-  //   return this.http.get<Unit>('api/unit/' + Unit_No)
-  // }
-
-  // updateUnit(Unit_No: string, unit: Unit): Observable<Unit>{
-  //   return this.http.put<Unit>('api/unit/' + Unit_No, unit)
-  // }
-
   deleteItem(Itm_No: string): Observable<Unit>{
     return this.http.delete<Unit>('api/item/' + Itm_No)
+  }
+
+
+  // vouchers
+  newVoucherDefaults(): Observable<any>{
+    return this.http
+      .get<any>('api/new-voucher-defaults')
+      // .pipe(catchError(this.handleError('getTasks', [])))
+  }
+
+  newVoucher(voucher: Voucher): Observable<Voucher>{
+    return this.http.post<Voucher>('api/new-voucher', voucher)
   }
 
 
