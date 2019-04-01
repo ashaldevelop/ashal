@@ -20,20 +20,20 @@
 
         </div>
 
-        <div class="form-group col-3" align='right'>
+        <!-- <div class="form-group col-3" align='right'>
 
             <label for="" >التاريخ الهجري</label>
             <input type="text" class="form-control" formControlName="gdHDate">
 
-        </div>
+        </div> -->
 
         <div class="form-group col-3" align='right'>
 
 
             <mat-form-field>
-                <input matInput class="form-control" [matDatepicker]="picker" placeholder="التاريخ الميلادي" formControlName="gdGDate">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <input matInput class="form-control" [matDatepicker]="sampleDate" placeholder="التاريخ الميلادي" formControlName="gdGDate">
+                <mat-datepicker-toggle matSuffix [for]="sampleDate"></mat-datepicker-toggle>
+                <mat-datepicker #sampleDate></mat-datepicker>
             </mat-form-field>
 
             <!-- <label for="" >الميلادي</label> -->
@@ -65,7 +65,10 @@
         <div class="form-group col-5" align='right'>
             
             <label for="" >المندوب</label>
-            <input type="text" class="form-control" formControlName="gdCstNo" value="1">
+            <select class="form-control" id="exampleFormControlSelect1" formControlName="mndob">
+                <option value="">choose mndob</option>
+                <option *ngFor="let mndob of mndobs" value="{{mndob.Mnd_No}}">{{mndob.Arb_Des}}</option>
+            </select>
 
         </div>
 
@@ -139,9 +142,9 @@
             <td>
 
 
-                <select class="form-control" id="exampleFormControlSelect1" formControlName="cst">
+                <select class="form-control" id="exampleFormControlSelect1" formControlName="gdCstNo">
                     <option value="">choose Cost Center</option>
-                    <option *ngFor="let cst of csts" value="{{cst.Cst_No}}">{{cst.Arb_Des}}</option>
+                    <option *ngFor="let gdCst of gdCsts" value="{{gdCst.Cst_No}}">{{gdCst.Arb_Des}}</option>
                 </select>
 
 
@@ -178,9 +181,8 @@
         </div>
 
         <div class="form-group col-3" align='right'>
-
             <label for="" >الرصيد</label>
-            <input type="text" [value]='balance' disabled>
+            <input type="text" class="form-control" [value]='balance' disabled>
         </div>
 
         <div class="form-group col-3" align='right'>
@@ -216,7 +218,7 @@
         <div class="form-group col-3" align='right'>
 
             <label for="" >الفرق</label>
-            <input type="text" class="form-control" [value]="diff" style="background:#fffe89;text-align:center" disabled>
+            <input type="text" class="form-control" formControlName="totalDiff" style="background:#fffe89;text-align:center" disabled>
 
         </div>
 
@@ -233,6 +235,6 @@
 
     </div>
 
-    <button class="btn btn-success btn-lg"  type="submit" style="">Save</button>
+    <button class="btn btn-success btn-lg" [disabled]="newForm.invalid" type="submit" style="">Save</button>
 
 </form>

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { DatePipe } from '@angular/common';
 // material module
 import { MaterialModule } from '../shared/material';
 
@@ -38,6 +38,7 @@ import { NewAccdefComponent } from './accdef/new-accdef/new-accdef.component';
     FormsModule,
     ReactiveFormsModule
   ],
+  providers: [DatePipe],
   entryComponents:[NewUnitComponent, NewCategoryComponent, NewAccdefComponent]
 })
 export class DashboardModule { }

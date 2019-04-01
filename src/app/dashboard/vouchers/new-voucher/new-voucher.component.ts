@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators, FormsModule, FormArray } from '@angular/forms';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-
+import { AbstractControl } from '@angular/forms'
 import { ToastrService } from 'ngx-toastr';
 import { AshalService } from '../../../shared/ashal.service';
 import { Voucher } from '../../../shared/voucher';
+import { isError } from 'util';
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-new-voucher',
@@ -21,19 +23,29 @@ export class NewVoucherComponent implements OnInit {
   newGdNo: number;
   accdefs: object;
   currencys: object;
-  csts: object;
-  balance:any;
+  gdCsts: object;
+  mndobs:object;
+  balance:any = '';
 
   constructor(
     private tostr: ToastrService,
     private ashalService: AshalService,
     public fb: FormBuilder,
+    public datepipe: DatePipe
     ) {
   }
 
   ngOnInit() {
     this.addDetails();
     this.newVoucherDefaults();
+  }
+
+
+  totalDiffValidator(control: AbstractControl){
+    if(control.value !== 0){
+      return { isError: true }
+    }
+    return null;
   }
 
   newVoucherDefaults(){
@@ -44,7 +56,8 @@ export class NewVoucherComponent implements OnInit {
           this.newGdNo = res.newGdNo;
           this.accdefs = res.accdefs;
           this.currencys = res.currencys;
-          this.csts = res.csts;
+          this.gdCsts = res.gdCsts;
+          this.mndobs = res.mndobs;
         }
       }
     );
@@ -52,16 +65,17 @@ export class NewVoucherComponent implements OnInit {
 
   newForm = this.fb.group({
 
-    gdHDate : ['', Validators.required],
-    gdGDate : ['', Validators.required],
-    gdCstNo : ['', Validators.required],
-    RefNo : ['', Validators.required],
-    madeenTotal : [0, Validators.required],
-    daenTotal : [0, Validators.required],
-    gdMem : ['', Validators.required],
+    gdHDate : [''],
+    gdGDate : [''],
+    RefNo : [''],
+    madeenTotal : [0],
+    daenTotal : [0],
+    gdMem : [''],
     accdefActive : [''],
     currency : [''],
+    mndob : [''],
     balance : [''],
+    totalDiff : [0, this.totalDiffValidator],
 
     
     details: this.fb.array([]) // details
@@ -70,12 +84,14 @@ export class NewVoucherComponent implements OnInit {
 
   // Using getters will make your code look pretty
   get gdHDate() { return this.newForm.get('gdHDate') }
+  get currency() { return this.newForm.get('currency') }
+  get mndob() { return this.newForm.get('mndob') }
   get gdGDate() { return this.newForm.get('gdGDate') }
-  get gdCstNo() { return this.newForm.get('gdCstNo') }
   get RefNo() { return this.newForm.get('RefNo') }
   get madeenTotal() { return this.newForm.get('madeenTotal') }
   get daenTotal() { return this.newForm.get('daenTotal') }
   get gdMem() { return this.newForm.get('gdMem') }
+  get totalDiff() { return this.newForm.get('totalDiff') }
   get accdefActive() { return this.newForm.get('accdefActive') }
   get detailsForm(){ return this.newForm.get('details') as FormArray }
 
@@ -87,7 +103,7 @@ export class NewVoucherComponent implements OnInit {
       gdDes: [''],
       madeen: [0],
       daen: [0],
-      cst: [''],
+      gdCstNo: [''],
       gdValue: [''],
       InvNo: [''],
     });
@@ -105,18 +121,18 @@ export class NewVoucherComponent implements OnInit {
 
   public newVoucher(){
 
-    // if(!this.newForm.valid) return null;
+    if(!this.newForm.valid) return null;
 
     const voucher: Voucher = {
       gdTyp: 11,
       gdMem: this.gdMem.value,
-      gdTot: 100,
-      gdTgdLok: 1,
+      gdTot: this.madeenTotal.value,
+      gdTgdLok: 0,
       gdHDate: this.gdHDate.value,
-      gdGDate: this.gdGDate.value,
-      gdMnd: 'gdMnd',
-      CurTyp: 1,
-      RefNo: 1,
+      gdGDate: this.datepipe.transform(this.gdGDate.value, 'yyyy/MM/dd'),
+      gdMnd: this.mndob.value,
+      CurTyp: this.currency.value,
+      RefNo: this.RefNo.value,
       details: this.detailsForm.value
     }
 
@@ -124,6 +140,8 @@ export class NewVoucherComponent implements OnInit {
     .subscribe(
       res => {
         console.log(res);
+        this.newVoucherDefaults();
+        this.tostr.success('تم تسجيل سند القيد بنجاح');
       },
       err => console.error(err)
     )
@@ -131,8 +149,12 @@ export class NewVoucherComponent implements OnInit {
 
     console.log(voucher);
     
+    // console.log(this.totalDiff.value);
+    console.log(this.datepipe.transform(this.gdGDate.value, 'yyyy-MM-dd'));
 
   }
+
+    
 
   accdefChanged(value, i){
     this.detailsForm.controls[i].patchValue({AccName: value});
@@ -184,7 +206,7 @@ export class NewVoucherComponent implements OnInit {
     }
     this.madeenTotal.setValue(madeenTotal);
     this.daenTotal.setValue(daenTotal);
-    this.diff = this.madeenTotal.value - this.daenTotal.value;
+    this.totalDiff.setValue(this.madeenTotal.value - this.daenTotal.value);
   }
 
   checkGdNo(gdNo:string){
