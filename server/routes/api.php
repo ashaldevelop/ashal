@@ -52,3 +52,4 @@ Route::get('check-gd-no', 'VoucherController@checkGdNo');
 Route::get('sum-active-accdef', 'VoucherController@sumActiveAccdef');
 Route::get('new-voucher-defaults', 'VoucherController@newVoucherDefaults');
 Route::post('new-voucher', 'VoucherController@save');
+Route::get('get-voucher', 'VoucherController@getVoucher');

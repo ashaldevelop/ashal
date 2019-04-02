@@ -8,6 +8,7 @@ import { CategoryListComponent } from './dashboard/catogory/category-list/catego
 import { AccdefListComponent } from './dashboard/accdef/accdef-list/accdef-list.component';
 import { NewVoucherComponent } from './dashboard/vouchers/new-voucher/new-voucher.component';
 import { ItemsListComponent } from './dashboard/items/items-list/items-list.component';
+import { EditVoucherComponent } from './dashboard/vouchers/edit-voucher/edit-voucher.component';
 
 const routes: Routes = [
   { 
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: "items-list", component: ItemsListComponent },
       { path: "new-item", component: NewItemComponent },
       { path: "new-voucher", component: NewVoucherComponent },
+      { path: "edit-voucher", component: EditVoucherComponent },
     ]
   },
   

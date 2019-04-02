@@ -118,10 +118,15 @@ export class AshalService {
     let params = new HttpParams().set('gdNo', gdNo);
     return this.http.get('api/check-gd-no', { params })
   }
-d
+
   getAccdefBalance(accdefNo: string){
     let params = new HttpParams().set('accdefNo', accdefNo);
     return this.http.get('api/sum-active-accdef', { params })
+  }
+
+  getVoucher(id: string): Observable<any>{
+    let params = new HttpParams().set('id', id);
+    return this.http.get('api/get-voucher', { params })
   }
 
 }

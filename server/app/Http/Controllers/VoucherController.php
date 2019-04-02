@@ -102,4 +102,21 @@ class VoucherController extends Controller{
 
     }
 
+
+    public function getVoucher(){
+
+        $id = $_GET['id'];
+
+        $voucher = (object) [
+
+            'GdHead' =>  GdHead::where('gdhead_ID', '=', $id)->firstOrFail(),
+            'GdDetails' =>  GdDetails::where('gdID', '=', $id)->get()
+
+        ];
+
+        return response()->json($voucher);
+
+    }
+
+
 }
