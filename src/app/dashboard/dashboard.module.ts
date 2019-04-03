@@ -18,6 +18,7 @@ import { AccdefListComponent } from './accdef/accdef-list/accdef-list.component'
 import { NewVoucherComponent } from './vouchers/new-voucher/new-voucher.component';
 import { NewAccdefComponent } from './accdef/new-accdef/new-accdef.component';
 import { EditVoucherComponent } from './vouchers/edit-voucher/edit-voucher.component';
+import { NewInvoiceComponent } from './invoices/new-invoice/new-invoice.component';
 
 @NgModule({
   declarations: [SideNavComponent,
@@ -31,6 +32,7 @@ import { EditVoucherComponent } from './vouchers/edit-voucher/edit-voucher.compo
     NewVoucherComponent,
     NewAccdefComponent,
     EditVoucherComponent,
+    NewInvoiceComponent,
   ],
   imports: [
     CommonModule,

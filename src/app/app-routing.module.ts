@@ -9,6 +9,7 @@ import { AccdefListComponent } from './dashboard/accdef/accdef-list/accdef-list.
 import { NewVoucherComponent } from './dashboard/vouchers/new-voucher/new-voucher.component';
 import { ItemsListComponent } from './dashboard/items/items-list/items-list.component';
 import { EditVoucherComponent } from './dashboard/vouchers/edit-voucher/edit-voucher.component';
+import { NewInvoiceComponent } from './dashboard/invoices/new-invoice/new-invoice.component';
 
 const routes: Routes = [
   { 
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: "new-item", component: NewItemComponent },
       { path: "new-voucher", component: NewVoucherComponent },
       { path: "edit-voucher/:id", component: EditVoucherComponent },
+      { path: "new-invoice/:id", component: NewInvoiceComponent },
     ]
   },
   
