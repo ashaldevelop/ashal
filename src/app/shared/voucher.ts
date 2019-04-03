@@ -14,6 +14,11 @@ export interface Voucher{
 };
 
 export interface GdDetails{
-    gdID: number;
+    AccNo: string;
+    gdCstNo: string;
+    InvNo: string;
     gdDes: string;
+    madeen: number;
+    daen: number;
+    gdValue: number;
 }

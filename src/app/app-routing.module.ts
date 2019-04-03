@@ -20,7 +20,7 @@ const routes: Routes = [
       { path: "items-list", component: ItemsListComponent },
       { path: "new-item", component: NewItemComponent },
       { path: "new-voucher", component: NewVoucherComponent },
-      { path: "edit-voucher", component: EditVoucherComponent },
+      { path: "edit-voucher/:id", component: EditVoucherComponent },
     ]
   },
   
