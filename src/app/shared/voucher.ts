@@ -1,4 +1,9 @@
 export interface Voucher{
+    GdHead?: GdHead;
+    GdDetails?: GdDetails[];
+};
+
+export interface GdHead{
     gdhead_ID?: number;
     gdTyp?: number;
     gdNo?: string;
@@ -10,8 +15,7 @@ export interface Voucher{
     gdMnd?: string;
     CurTyp?: number;
     RefNo?: number;
-    details?: GdDetails[];
-};
+}
 
 export interface GdDetails{
     AccNo: string;

@@ -11,6 +11,35 @@ use Illuminate\Support\Facades\DB;
 
 class VoucherController extends Controller{
 
+    public function preVoucher(){
+        $preVoucher = (object) [
+            'currencys' => DB::table('T_Curency')->select('Curency_ID', 'Arb_Des', 'Eng_Des')->get(),
+            'mndobs' => DB::table('T_Mndob')->select('Mnd_No', 'Arb_Des', 'Eng_Des')->where('St', 0)->get(),
+            'gdCsts' => DB::table('T_CstTbl')->select('Cst_No', 'Arb_Des', 'Eng_Des')->where('St', 0)->get(),
+            'accdefs' => AccDef::select('AccDef_No', 'Arb_Des', 'Eng_Des')->where('Lev', 0)->get()
+        ];
+        return response()->json($preVoucher);
+    }
+
+    public function voucher(){
+        $id = $_GET['id'];
+
+        if($id==0){
+            $voucher = (object) [
+                'GdHead' => GdHead::select('gdhead_ID', 'gdNo')->latest('gdhead_ID')->first()
+            ];
+        }
+        else{
+            $voucher = (object) [
+                'GdHead' =>  GdHead::where('gdhead_ID', '=', $id)->firstOrFail(),
+                'GdDetails' =>  GdDetails::where('gdID', '=', $id)->get()
+            ];
+        }
+
+        return response()->json($voucher);
+
+    }
+
     public function sumActiveAccdef(){
         $accdefNo = $_GET['accdefNo'];
 
@@ -33,19 +62,6 @@ class VoucherController extends Controller{
         GdDetails::select('gdValue')->where('gdTyp', 11)->pluck('gdNo')->toArray();
     }
 
-    public function newVoucherDefaults(){
-        $newVoucherDefaults = (object) [
-            'newGdheadID' => GdHead::select('gdhead_ID')->latest('gdhead_ID')->first()['gdhead_ID'] + 1,
-            'newGdNo' => GdHead::select('gdNo')->latest('gdhead_ID')->first()['gdNo'] + 1,
-            'currencys' => DB::table('T_Curency')->get(),
-            'mndobs' => DB::table('T_Mndob')->where('St', 0)->get(),
-            'gdCsts' => DB::table('T_CstTbl')->where('St', 0)->get(),
-            'accdefs' => AccDef::where('Lev', 0)->get(),
-        ];
-        return response()->json($newVoucherDefaults);
-        
-    }
-
     public function save(Request $request)  {
 
          $gdHead = new GdHead;
@@ -59,7 +75,7 @@ class VoucherController extends Controller{
          $gdHead->RefNo= $request->RefNo;
          $gdHead->gdLok= 0;
          $gdHead->gdMem= $request->gdMem;
-         $gdHead->gdTot= $request->gdTot;
+         $gdHead->gdTot= $request->madeenTotal;
          $gdHead->Rend_Id= GdHead::max('Rend_Id') + 1;
 
 
@@ -91,32 +107,12 @@ class VoucherController extends Controller{
 
                  $gdDetails->gdValue = $data['madeen'] > $data['daen'] ? max($data['madeen'], $data['daen']) : -(max($data['madeen'], $data['daen']));
 
-
-
                  $gdDetails->save();
 
              }
              return $gdHead->gdhead_ID;
          }
         
-
     }
-
-
-    public function getVoucher(){
-
-        $id = $_GET['id'];
-
-        $voucher = (object) [
-
-            'GdHead' =>  GdHead::where('gdhead_ID', '=', $id)->firstOrFail(),
-            'GdDetails' =>  GdDetails::where('gdID', '=', $id)->get()
-
-        ];
-
-        return response()->json($voucher);
-
-    }
-
 
 }

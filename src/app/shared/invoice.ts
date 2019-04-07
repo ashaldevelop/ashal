@@ -1,4 +1,9 @@
 export interface Invoice{
+    T_INVHED?: T_INVHED;
+    T_INVDET?: T_INVDET[];
+}
+
+export interface T_INVHED{
     InvNo?: string; // رقم الفاتورة
     HDat?: string; // التاريخ الهجري
     GDat?: string; // التاريخ الميلاد
@@ -44,11 +49,9 @@ export interface Invoice{
     ArbTaf?: string; //  التفقيط العربي
     EngTaf?: string; //  التفقيط الانجليزي
     St?: number; //  في حالة التحديث او الحذف يصبح 0
-
-    details?: InvDet[];
 }
 
-export interface InvDet{
+export interface T_INVDET{
     InvNo?: string; // رقم الفاتورة نفس InvNo بالهيدر
     InvId?: number; // FK of invoice
     InvSer?: number; // ترتيب الصفوف

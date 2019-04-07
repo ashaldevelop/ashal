@@ -17,8 +17,10 @@ import { NewCategoryComponent } from './catogory/new-category/new-category.compo
 import { AccdefListComponent } from './accdef/accdef-list/accdef-list.component';
 import { NewVoucherComponent } from './vouchers/new-voucher/new-voucher.component';
 import { NewAccdefComponent } from './accdef/new-accdef/new-accdef.component';
-import { EditVoucherComponent } from './vouchers/edit-voucher/edit-voucher.component';
 import { NewInvoiceComponent } from './invoices/new-invoice/new-invoice.component';
+import { FormComponent } from './units/form/form.component';
+import { VoucherComponent } from './vouchers/voucher/voucher.component';
+import { InvoiceComponent } from './invoices/invoice/invoice.component';
 
 @NgModule({
   declarations: [SideNavComponent,
@@ -31,8 +33,10 @@ import { NewInvoiceComponent } from './invoices/new-invoice/new-invoice.componen
     AccdefListComponent,
     NewVoucherComponent,
     NewAccdefComponent,
-    EditVoucherComponent,
     NewInvoiceComponent,
+    FormComponent,
+    VoucherComponent,
+    InvoiceComponent,
   ],
   imports: [
     CommonModule,

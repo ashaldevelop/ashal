@@ -53,3 +53,8 @@ Route::get('sum-active-accdef', 'VoucherController@sumActiveAccdef');
 Route::get('new-voucher-defaults', 'VoucherController@newVoucherDefaults');
 Route::post('new-voucher', 'VoucherController@save');
 Route::get('get-voucher', 'VoucherController@getVoucher');
+
+
+Route::get('get-id', 'VoucherController@getId');
+Route::get('pre-voucher', 'VoucherController@preVoucher');
+Route::get('voucher', 'VoucherController@voucher');

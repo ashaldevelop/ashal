@@ -129,4 +129,14 @@ export class AshalService {
     return this.http.get('api/get-voucher', { params })
   }
 
+  preVoucher(id: string): Observable<any>{
+    let params = new HttpParams().set('id', id);
+    return this.http.get('api/pre-voucher', { params })
+  }
+
+  voucher(id: string): Observable<any>{
+    let params = new HttpParams().set('id', id);
+    return this.http.get('api/voucher', { params })
+  }
+  
 }
