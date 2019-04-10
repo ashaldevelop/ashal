@@ -15,12 +15,11 @@ import { NewItemComponent } from './items/new-item/new-item.component';
 import { CategoryListComponent } from './catogory/category-list/category-list.component';
 import { NewCategoryComponent } from './catogory/new-category/new-category.component';
 import { AccdefListComponent } from './accdef/accdef-list/accdef-list.component';
-import { NewVoucherComponent } from './vouchers/new-voucher/new-voucher.component';
 import { NewAccdefComponent } from './accdef/new-accdef/new-accdef.component';
-import { NewInvoiceComponent } from './invoices/new-invoice/new-invoice.component';
-import { FormComponent } from './units/form/form.component';
 import { VoucherComponent } from './vouchers/voucher/voucher.component';
 import { InvoiceComponent } from './invoices/invoice/invoice.component';
+import { ItemComponent } from './items/item/item.component';
+import { VouchersListComponent } from './vouchers/vouchers-list/vouchers-list.component';
 
 @NgModule({
   declarations: [SideNavComponent,
@@ -31,12 +30,11 @@ import { InvoiceComponent } from './invoices/invoice/invoice.component';
     CategoryListComponent,
     NewCategoryComponent,
     AccdefListComponent,
-    NewVoucherComponent,
     NewAccdefComponent,
-    NewInvoiceComponent,
-    FormComponent,
     VoucherComponent,
     InvoiceComponent,
+    ItemComponent,
+    VouchersListComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +45,6 @@ import { InvoiceComponent } from './invoices/invoice/invoice.component';
     ReactiveFormsModule
   ],
   providers: [DatePipe],
-  entryComponents:[NewUnitComponent, NewCategoryComponent, NewAccdefComponent]
+  entryComponents:[NewUnitComponent, NewCategoryComponent, NewAccdefComponent, VouchersListComponent]
 })
 export class DashboardModule { }

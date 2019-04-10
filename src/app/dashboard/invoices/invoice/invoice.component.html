@@ -1,0 +1,315 @@
+{{ form.value | json }}
+<form [formGroup]="form" (ngSubmit)="submit()" dir="rtl" style="margin:30px;" autocomplete="off">
+
+  <div class="form-row">
+
+    <div class="form-group col-3">
+      <label for="">رقم الفاتورة</label>
+      <input type="text" formControlName="InvNo" class="form-control">
+    </div>
+
+    <div class="form-group col-3" align='right'>
+
+      <label for="" >طريقة الدفع</label>
+      <select class="form-control" formControlName="InvCashPay" class="form-control">
+          <option value="">choose way</option>
+          <option value="0">نقدي</option>
+          <option value="1">آجل</option>
+          <option value="2">شبكة</option>
+      </select>
+
+    </div>
+
+  </div>
+  
+  <div class="form-row">
+
+    <div class="form-group col-3" align='right'>
+        <label for="">رقم العميل</label>
+        <select class="form-control" id="exampleFormControlSelect1" formControlName="CusVenNo" (change)="accdefChanged($event.target.value)">
+            <option value="">choose</option>
+            <option *ngFor="let accdef of accdefs" value="{{accdef.AccDef_No}}">{{accdef.AccDef_No}}</option>
+        </select>
+    </div>
+
+    <div class="form-group col-3" align='right'>
+        <label for="">اسم العميل</label>
+
+        <select class="form-control" id="exampleFormControlSelect1" formControlName="CusVenNo" (change)="accdefChanged($event.target.value)">
+            <option value="">choose</option>
+            <option *ngFor="let accdef of accdefs" value="{{accdef.AccDef_No}}">{{accdef.Arb_Des}}</option>
+        </select>
+    </div>
+
+    <div class="form-group col-3" align='right'>
+        <label for="">الحساب النقدي</label>
+        <select class="form-control" id="exampleFormControlSelect1" formControlName="CashAcc">
+            <option value="">choose</option>
+            <option *ngFor="let cashAccdef of cashAccdefs" value="{{cashAccdef.AccDef_No}}">{{cashAccdef.Arb_Des}}</option>
+        </select>
+    </div>
+
+  </div>
+
+    <div class="form-row">
+
+        <div class="form-group col-3" align='right'>
+            <label for="">الهاتف</label>
+            <input type="text" formControlName="CusVenTel" class="form-control">
+        </div>
+
+        <div class="form-group col-6" align='right'>
+            <label for="">العنوان</label>
+            <input type="text" formControlName="CusVenAdd" class="form-control">
+        </div>
+
+        <div class="form-group col-3" align='right'>
+
+            <label for="" >العملة</label>
+            <select class="form-control" formControlName="CurTyp" class="form-control"
+            [class.is-invalid]="form.controls['CurTyp'].valid.invalid && form.controls['CurTyp'].valid.touched">
+                <option *ngFor="let currency of currencys" value="{{currency.Curency_ID}}">{{currency.Arb_Des}}</option>
+            </select>
+            <small class="text-danger" [class.d-none]="form.controls['CurTyp'].valid || form.controls['CurTyp'].valid.untouched">يجب اختيار العملة</small>
+        
+        </div>
+
+    </div>
+    
+    <div class="form-row">
+
+        <div class="form-group col-3" align='right'>
+            <label for="">رقم المرجع</label>
+            <input type="text" formControlName="RefNo" class="form-control">
+        </div>
+
+        <div class="form-group col-5" align='right'>
+            
+            <label for="" >المندوب</label>
+            <select class="form-control" id="exampleFormControlSelect1" formControlName="MndNo">
+                <option value="">choose mndob</option>
+                <option *ngFor="let mndob of mndobs" value="{{mndob.Mnd_No}}">{{mndob.Arb_Des}}</option>
+            </select>
+
+        </div>
+
+    </div>
+
+    <div class="form-row">
+
+        <div class="form-group col-6" align='right'>
+            <label for="">الملاحظات</label>
+            <textarea cols="80" rows="10" formControlName="Remark"></textarea>
+        </div>
+        
+        <div class="form-group col-3" align='right'>
+            <label for="">الرقم الضريبي</label>
+            <input type="text" formControlName="Vat_No" class="form-control">
+        </div>
+
+        <div class="form-group col-3" align='right'>
+            <label for="">سعر الفاتورة</label>
+            <select class="form-control" formControlName="CustPri" class="form-control">
+                <option value="0">السعر الافتراضي</option>
+                <option value="1">سعر الجملة</option>
+                <option value="2">سعر موزعين</option>
+                <option value="3">سعر مناديب</option>
+                <option value="4">سعر تفرقة</option>
+                <option value="5">عرض خاص</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-row">
+
+        <div class="form-group col-3" align='right'>
+
+            <label for="">مركز التكلفة - دائن</label>
+            <select class="form-control" id="exampleFormControlSelect1" formControlName="InvCstNo">
+                <option *ngFor="let cst of csts" value="{{cst.Cst_No}}">{{cst.Arb_Des}}</option>
+            </select>
+
+        </div>
+
+        <div class="form-group col-3">
+
+            <label for="">مركز التكلفة - مدين</label>
+            <select class="form-control" id="exampleFormControlSelect1" formControlName="InvCstNo1">
+                <option *ngFor="let cst of csts" value="{{cst.Cst_No}}">{{cst.Arb_Des}}</option>
+            </select>
+
+        </div>
+
+    </div>
+
+    <!-- details -->
+    <table width='100%' style='margin:30px 0' formArrayName="details">
+
+        <tr align="center">
+
+            <th>
+                <button mat-icon-button color="primary" (click)="addDetails()" type="button">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </th>
+
+            <th>كود الصنف</th>
+            <th>وصف الصنف</th>
+            <th>الوحدة</th>
+            <th>م</th>
+            <th>الكمية</th>
+            <th>السعر</th>
+            <th>خصم %</th>
+            <th>الإجمالي</th>
+        </tr>
+
+        <tr align="center" *ngFor="let detail of detailsForm.controls; let i=index" [formGroupName]="i">
+            <td></td>
+            
+            <td>
+                <select class="form-control" id="exampleFormControlSelect1" formControlName="ItmNo" (change)="itemChanged($event.target.value, i)">
+                    <option *ngFor="let item of items" value="{{item.Itm_No}}">{{item.Itm_No}}</option>
+                </select>
+            </td>
+
+            <td>
+                <input type="text" formControlName="ItmDes" class="form-control">
+            </td>
+
+            <td width="200">
+                <select class="form-control" id="exampleFormControlSelect1" formControlName="ItmUnt" (change)="unitChanged($event.target.value, i)">
+                    <!-- اختيار الوحدة بناءً على الصنف الذي تم اختياره -->
+                    <option *ngFor="let unit of units" value="{{unit.Unit_No}}">{{unit.Eng_Des}}</option>
+                </select>
+            </td>
+
+            <td>
+                <select class="form-control" id="exampleFormControlSelect1" formControlName="StoreNo">
+                    <option *ngFor="let store of stores" value="{{store.Store_No}}">{{store.Store_No}}</option>
+                </select>
+            </td>
+
+            <td>
+                <input type="text" formControlName="Qty" class="form-control">
+            </td>
+
+            <td>
+                <input type="text" formControlName="Price" class="form-control">
+            </td>
+
+            <td>
+                <input type="text" formControlName="ItmDis" class="form-control">
+            </td>
+
+            <td>
+                <input type="text" formControlName="Amount" class="form-control">
+            </td>
+
+            <td>
+                <button mat-button color="warn" (click)="removeDetails(i)" type="button">
+                    <mat-icon>remove</mat-icon>
+                </button>
+            </td>
+
+        </tr>        
+    
+    </table>
+
+    <!-- footter -->
+    <div class="form-row">
+
+        <div class="form-group col-6" align='right'>
+            <label for="" >اسم الحساب</label>
+            <select class="form-control" id="exampleFormControlSelect1" formControlName="accdefActive">
+                <option value=""></option>
+                <option value="{{accdef.AccDef_No}}" *ngFor="let accdef of accdefs">{{accdef.Arb_Des}}</option>
+            </select>
+        </div>
+        
+        <div class="form-group col-3" align='right'>
+            <label for="">المدفوع</label>
+            <input type="text" formControlName="CashPay" class="form-control">
+        </div>
+
+        <div class="form-group col-3" align='right'>
+            <label for="">إجمالي الفاتورة</label>
+            <input type="text" formControlName="InvTot" class="form-control">
+        </div>
+
+    </div>
+
+    <div class="form-row">
+        
+        <div class="form-group col-3" align='right'>
+            <label for="">إجمالي الكمية</label>
+            <input type="text" formControlName="InvQty" class="form-control">
+        </div>
+
+        <div class="form-group col-3" align='right'>
+            <label for="">الخصم القيمة</label>
+            <input type="text" formControlName="InvDisVal" class="form-control">
+        </div>
+
+    </div>
+
+    <div class="form-row">
+        
+        <div class="form-group col-3" align='right'>
+            <label for="">العمولة</label>
+            <input type="text" formControlName="Commission" class="form-control">
+        </div>
+
+        <div class="form-group col-3" align='right'>
+            <label for="">الخصم نسبة</label>
+            <input type="text" formControlName="InvDisPrs" class="form-control">
+        </div>
+
+    </div>
+
+    <div class="form-row">
+        
+        <div class="form-group col-3" align='right'>
+            <label for="">أجور الشحن</label>
+            <input type="text" formControlName="ShippingRates" class="form-control">
+        </div>
+
+        <div class="form-group col-3" align='right'>
+            <label for="">صافي الفاتورة</label>
+            <input type="text" formControlName="InvNet" class="form-control">
+        </div>
+
+    </div>
+
+    <div class="form-row">
+        
+        <div class="form-group col-3" align='right'>
+            <label for="">مصاريف أخرى</label>
+            <input type="text" formControlName="ShipExpens" class="form-control">
+        </div>
+
+    </div>
+
+    <div class="form-row">
+        
+        <div class="form-group col-3" align='right'>
+            <label for="">إجمالي الحجم</label>
+            <input type="text" formControlName="InvWight_T" class="form-control">
+        </div>
+
+    </div>
+
+    <div class="form-row">
+        
+        <div class="form-group col-3" align='right'>
+            <label for="">إجمالي الضريبة</label>
+            <input type="text" formControlName="TaxTot" class="form-control">
+        </div>
+
+    </div>
+
+
+    <button class="btn btn-success btn-lg" [disabled]='form.invalid' type="submit">{{ save }}</button>
+
+
+</form>

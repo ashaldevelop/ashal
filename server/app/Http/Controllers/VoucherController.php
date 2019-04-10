@@ -15,13 +15,13 @@ class VoucherController extends Controller{
         $preVoucher = (object) [
             'currencys' => DB::table('T_Curency')->select('Curency_ID', 'Arb_Des', 'Eng_Des')->get(),
             'mndobs' => DB::table('T_Mndob')->select('Mnd_No', 'Arb_Des', 'Eng_Des')->where('St', 0)->get(),
-            'gdCsts' => DB::table('T_CstTbl')->select('Cst_No', 'Arb_Des', 'Eng_Des')->where('St', 0)->get(),
+            'csts' => DB::table('T_CstTbl')->select('Cst_No', 'Arb_Des', 'Eng_Des')->where('St', 0)->get(),
             'accdefs' => AccDef::select('AccDef_No', 'Arb_Des', 'Eng_Des')->where('Lev', 0)->get()
         ];
         return response()->json($preVoucher);
     }
 
-    public function voucher(){
+    public function getVoucher(){
         $id = $_GET['id'];
 
         if($id==0){

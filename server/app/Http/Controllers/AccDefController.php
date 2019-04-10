@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\AccDef;
+use App\GdDetails;
+use App\Item;
 use App\Http\Resources\AccDef as AccDefResource;
 
 class AccDefController extends Controller{
@@ -63,11 +65,18 @@ class AccDefController extends Controller{
     // delete single accdef
     public function delete($id){   
 
-        $AccDef= AccDef::where('AccDef_No', '=', $id)->firstOrFail();
+        // check if the unit used in item
+        $accdefUsedInItem = Item::where('DefultVendor', $id)->exists();
+        $accdefUsedInGdDetails = GdDetails::where('AccNo', $id)->exists();
 
-        if($AccDef->delete()){
+        if($accdefUsedInItem == false && $accdefUsedInGdDetails == false){
+            $AccDef= AccDef::where('AccDef_No', '=', $id)->firstOrFail();
+            $cat->delete();
             return 204;
+        }else{
+            return response()->json('this accdef cant be deleted, aleady used');
         }
+
 
     }
 

@@ -23,7 +23,7 @@ export class ItemsListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns = ['index', 'Eng_Des', 'Arb_Des', 'Itm_No'];
+  displayedColumns = ['index', 'Itm_No', 'Eng_Des', 'Arb_Des', 'controls'];
 
   constructor(
     private tostr: ToastrService,

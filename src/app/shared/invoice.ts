@@ -1,9 +1,9 @@
 export interface Invoice{
-    T_INVHED?: T_INVHED;
-    T_INVDET?: T_INVDET[];
+    INVHED?: INVHED;
+    INVDET?: INVDET[];
 }
 
-export interface T_INVHED{
+export interface INVHED{
     InvNo?: string; // رقم الفاتورة
     HDat?: string; // التاريخ الهجري
     GDat?: string; // التاريخ الميلاد
@@ -20,7 +20,8 @@ export interface T_INVHED{
     MndNo?: string; // رقم المندوب
     Remark?: string; // ملاحظات
     Vat_No?: string; // الرقم الضريبي
-    InvCash?: string; // سعر الاصناف?: عميل - مندوب - جملة - موزعين
+    CustPri?: string; // سعر الاصناف?: عميل - مندوب - جملة - موزعين
+    InvCash?: string; // طريقة الدفع
     InvCstNo?: string; // مركز تكلفة دائن
     InvCstNo1?: string; // مركز تكلفة مدين
     CashPay?: number; // مدفوع
@@ -51,7 +52,7 @@ export interface T_INVHED{
     St?: number; //  في حالة التحديث او الحذف يصبح 0
 }
 
-export interface T_INVDET{
+export interface INVDET{
     InvNo?: string; // رقم الفاتورة نفس InvNo بالهيدر
     InvId?: number; // FK of invoice
     InvSer?: number; // ترتيب الصفوف

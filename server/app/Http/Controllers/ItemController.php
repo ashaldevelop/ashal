@@ -2,6 +2,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Item;
+use App\Unit;
+use App\Category;
+use App\AccDef;
 use App\Http\Resources\Item as ItemResource;
 class ItemController extends Controller{
 
@@ -11,16 +14,38 @@ class ItemController extends Controller{
         return response()->json(ItemResource::collection(Item::orderBy('Itm_No', 'DESC')->get()));
     }
 
+    public function preItem(){
+        $preItem = (object) [
+            'accdefs' => AccDef::select('AccDef_No', 'Arb_Des', 'Eng_Des')->where([ ['Lev', 0], ['AccCat', 5] ])->get(),
+            'categorys' => Category::select('CAT_No', 'Arb_Des', 'Eng_Des')->get(),
+            'units' => Unit::select('Unit_No', 'Arb_Des', 'Eng_Des')->get()
+        ];
+        return response()->json($preItem);
+    }
+
+    public function getItem(){
+        $id = $_GET['id'];
+            $item = Item::where('Itm_No', '=', $id)->firstOrFail();
+            return response()->json($item);
+    }
 
     // save single item
     public function save(Request $request){
 
-        $item= new Item;
-        $item->Itm_No= $request->input('Itm_No');
+        // $item= new Item;
+        if($request->update == 'true'){
+            $item = Item::where('Itm_No', '=', $request->Itm_No)->firstOrFail();
+        }else{
+            $item = new Item;
+        }
+        
+        $item->Group_Code= $request->input('Group_Code');
         $item->ItmCat= $request->input('ItmCat');
         $item->Eng_Des= $request->input('Eng_Des');
         $item->Arb_Des= $request->input('Arb_Des');
         $item->OpenQty= $request->input('OpenQty');
+        $item->LrnExp= $request->input('LrnExp');
+        $item->DMY= $request->input('DMY');
         $item->DefultVendor= $request->input('DefultVendor'); // accdef no
         $item->StartCost= $request->input('StartCost'); // open cost
         $item->LastCost= $request->input('LastCost');
@@ -77,18 +102,13 @@ class ItemController extends Controller{
         $item->UntPri5= $request->input('UntPri5');
 
 
-        if($item->save()){
+        if($item->update()){
             return $item;
         }
         
     }
 
     
-    // get single item
-    public function view($id){
-        return Item::where('Itm_No', '=', $id)->firstOrFail();
-    }
-
 
     // delete single item
     public function delete($id){

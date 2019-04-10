@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Unit;
+use App\Item;
 
 class UnitController extends Controller{
 
@@ -51,10 +52,17 @@ class UnitController extends Controller{
     // delete single unit
     public function delete($id){
 
-        $unit= Unit::where('Unit_No', '=', $id)->firstOrFail();
-        $unit->delete();
+        // check if the unit used in item
+        $unitUsed = Item::where('Unit1', $id)->orWhere('Unit2', $id)->orWhere('Unit3', $id)->orWhere('Unit4', $id)->orWhere('Unit5', $id)->exists();
 
-        return 204;
+        if($unitUsed == false){
+            $unit= Unit::where('Unit_No', '=', $id)->firstOrFail();        
+            $unit->delete();
+            return 204;
+        }else{
+            return response()->json('this unit cant be deleted, aleady used in item');
+        }
+
 
     }
 

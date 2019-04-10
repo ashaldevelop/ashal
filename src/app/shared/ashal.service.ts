@@ -88,10 +88,19 @@ export class AshalService {
 
 
   // items
+  preItem(): Observable<any>{
+    return this.http.get('api/pre-item')
+  }
+
   getItems(): Observable<Item[]>{
     return this.http
       .get<Item[]>('api/items-list')
       // .pipe(catchError(this.handleError('getTasks', [])))
+  }
+
+  getItem(id: string): Observable<any>{
+    let params = new HttpParams().set('id', id);
+    return this.http.get('api/get-item', { params })
   }
 
   newItem(item: Item): Observable<Item>{
@@ -104,12 +113,6 @@ export class AshalService {
 
 
   // vouchers
-  newVoucherDefaults(): Observable<any>{
-    return this.http
-      .get<any>('api/new-voucher-defaults')
-      // .pipe(catchError(this.handleError('getTasks', [])))
-  }
-
   newVoucher(voucher: Voucher): Observable<Voucher>{
     return this.http.post<Voucher>('api/new-voucher', voucher)
   }
@@ -124,19 +127,28 @@ export class AshalService {
     return this.http.get('api/sum-active-accdef', { params })
   }
 
+  preVoucher(): Observable<any>{
+    return this.http.get('api/pre-voucher')
+  }
+
   getVoucher(id: string): Observable<any>{
     let params = new HttpParams().set('id', id);
     return this.http.get('api/get-voucher', { params })
   }
 
-  preVoucher(id: string): Observable<any>{
-    let params = new HttpParams().set('id', id);
-    return this.http.get('api/pre-voucher', { params })
+  // invoices
+  preInvoice(): Observable<any>{
+    return this.http.get('api/pre-invoice')
   }
 
-  voucher(id: string): Observable<any>{
+  getInvoice(id: string): Observable<any>{
     let params = new HttpParams().set('id', id);
-    return this.http.get('api/voucher', { params })
+    return this.http.get('api/get-invoice', { params })
+  }
+  
+  getItemData(Itm_No: string): Observable<any>{
+    let params = new HttpParams().set('Itm_No', Itm_No);
+    return this.http.get('api/get-item-data', { params })
   }
   
 }

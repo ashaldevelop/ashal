@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Unit;
+use App\Item;
 use App\Http\Resources\Category as CategoryResource;
 
 class CategoryController extends Controller{
@@ -58,9 +59,16 @@ class CategoryController extends Controller{
 
     // delete single category
     public function delete($id){   
-        $category= Category::where('CAT_No', '=', $id)->firstOrFail();
-        if($category->delete()){
+
+        // check if the cat used in item
+        $catUsed = Item::where('ItmCat', $id)->exists();
+
+        if($catUsed == false){
+            $cat= Category::where('CAT_No', '=', $id)->firstOrFail();        
+            $cat->delete();
             return 204;
+        }else{
+            return response()->json('this category cant be deleted, aleady used in item');
         }
 
     }

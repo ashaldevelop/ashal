@@ -1,10 +1,10 @@
 <mat-toolbar style='background:#CDEBFE;margin-bottom: 10px'>
 
   <span style="margin:0 auto;font-size:32px;font-weight: bold">
-    ITEMS
+    سندات قيد اليومية
   </span>
-  <button mat-flat-button routerLink="../item/0" style="font-size:18px;background:#0C457E;color:white;border-radius: 10px;">
-    <mat-icon style="margin-right:10px;color:white">add</mat-icon>Add Item
+  <button mat-flat-button (click)='onCreateNew()' style="font-size:18px;background:#0C457E;color:white;border-radius: 10px;">
+    <mat-icon style="margin-right:10px;color:white">add</mat-icon>Add Unit
   </button>
   
 </mat-toolbar>
@@ -20,30 +20,29 @@
 
     <ng-container matColumnDef="index">
       <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="40px" style="flex: 0 0 10%;">  <button mat-button>#</button> </mat-header-cell>
-      <mat-cell *matCellDef="let item let i= index;" fxFlex="40px" style="flex: 0 0 10%;"> <button mat-button style="font-weight: bold">{{ i+1 }}</button></mat-cell>
+      <mat-cell *matCellDef="let unit let i= index;" fxFlex="40px" style="flex: 0 0 10%;"> <button mat-button style="font-weight: bold">{{ i+1 }}</button></mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="Itm_No">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Item No </mat-header-cell>
-      <mat-cell *matCellDef="let item"><button mat-button class="main-links" routerLink="../item/{{item.Itm_No}}"> {{item.Itm_No}} </button></mat-cell>
+    <ng-container matColumnDef="gdNo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> رقم القيد </mat-header-cell>
+      <mat-cell *matCellDef="let voucher"> {{voucher.gdNo}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="Eng_Des">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> English Name </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.Eng_Des}} </mat-cell>
+    <ng-container matColumnDef="gdMem">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> البيان </mat-header-cell>
+      <mat-cell *matCellDef="let voucher"> {{voucher.gdMem}} </mat-cell>
     </ng-container>
 
-
-    <ng-container matColumnDef="Arb_Des">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Arabic Name </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{item.Arb_Des}} </mat-cell>
+    <ng-container matColumnDef="gdMem">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> إجمالي القيد </mat-header-cell>
+      <mat-cell *matCellDef="let voucher"> {{voucher.gdTot}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="controls">
+    <ng-container matColumnDef="Unit_No">
       <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-      <mat-cell *matCellDef="let item">
-        <button mat-icon-button routerLink="../item/{{item.Itm_No}}" style='margin-right:40px' (click)="onEdit(item.Itm_No)"><mat-icon>edit</mat-icon></button>
-        <button mat-icon-button color='warn' (click)="onDelete(item.Itm_No)"><mat-icon>delete_outline</mat-icon></button>
+      <mat-cell *matCellDef="let unit">
+        <button mat-icon-button style='margin-right:40px' (click)="onEdit(unit.Unit_No)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color='warn' (click)="onDelete(unit.Unit_No)"><mat-icon>delete_outline</mat-icon></button>
       </mat-cell>
     </ng-container>
 

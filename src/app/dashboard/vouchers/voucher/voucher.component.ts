@@ -20,7 +20,7 @@ export class VoucherComponent implements OnInit {
   // voucher defaults
   accdefs: object;
   currencys: object; // العملات
-  gdCsts: object; // مركز التكلفة
+  csts: object; // مركز التكلفة
   mndobs: object; // المندوبين
 
   constructor(
@@ -79,21 +79,21 @@ export class VoucherComponent implements OnInit {
   }
 
   preVoucher(){
-    this.ashalService.preVoucher(this.id).subscribe(
+    this.ashalService.preVoucher().subscribe(
 
       preVoucher => {
 
         this.currencys = preVoucher.currencys;
         this.mndobs = preVoucher.mndobs;
         this.accdefs = preVoucher.accdefs;
-        this.gdCsts = preVoucher.gdCsts;
+        this.csts = preVoucher.csts;
       }
 
     );
   }
 
   getVoucher(){
-    this.ashalService.voucher(this.id).subscribe(
+    this.ashalService.getVoucher(this.id).subscribe(
       voucher => {
         this.voucher = voucher;
 
@@ -133,12 +133,12 @@ export class VoucherComponent implements OnInit {
     );
   }
 
-  accdefChanged(value: string, i){
-    this.detailsForm.controls[i].patchValue({AccName: value});
-    this.detailsForm.controls[i].patchValue({AccNo: value});
-    this.form.controls['accdefActive'].patchValue(this.detailsForm.controls[i]['controls']['AccNo'].value);
-    this.getActiveAccdefBalance(this.detailsForm.controls[i]['controls']['AccNo'].value);
-  }
+    accdefChanged(value: string, i){
+      this.detailsForm.controls[i].patchValue({AccName: value});
+      this.detailsForm.controls[i].patchValue({AccNo: value});
+      this.form.controls['accdefActive'].patchValue(this.detailsForm.controls[i]['controls']['AccNo'].value);
+      this.getActiveAccdefBalance(this.detailsForm.controls[i]['controls']['AccNo'].value);
+    }
 
   getActiveAccdefBalance(AccNo:string){
     this.ashalService.getAccdefBalance(AccNo)

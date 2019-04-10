@@ -44,17 +44,21 @@ Route::delete('accdef/{AccDef_No}', 'AccDefController@delete');
 //items routes
 Route::get('items-list', 'ItemController@index');
 Route::get('item/{Itm_No}', 'ItemController@view');
+Route::get('get-item', 'ItemController@getItem');
+Route::get('pre-item', 'ItemController@preItem');
 Route::post('new-item', 'ItemController@save');
 Route::delete('item/{Itm_No}', 'ItemController@delete');
 
 // voucehrs routes
 Route::get('check-gd-no', 'VoucherController@checkGdNo');
 Route::get('sum-active-accdef', 'VoucherController@sumActiveAccdef');
-Route::get('new-voucher-defaults', 'VoucherController@newVoucherDefaults');
 Route::post('new-voucher', 'VoucherController@save');
+Route::get('pre-voucher', 'VoucherController@preVoucher');
 Route::get('get-voucher', 'VoucherController@getVoucher');
 
 
-Route::get('get-id', 'VoucherController@getId');
-Route::get('pre-voucher', 'VoucherController@preVoucher');
-Route::get('voucher', 'VoucherController@voucher');
+// invoices
+Route::get('pre-invoice', 'InvoiceController@preInvoice');
+Route::get('get-invoice', 'InvoiceController@getInvoice');
+Route::get('get-item-data', 'InvoiceController@getItemData');
+
