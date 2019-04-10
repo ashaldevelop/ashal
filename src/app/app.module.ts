@@ -12,12 +12,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material';
 
 import { DashboardModule } from './dashboard/dashboard.module';
-import { VouchersListComponent } from './vouchers/vouchers-list/vouchers-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VouchersListComponent,
   ],
   imports: [
     BrowserModule,

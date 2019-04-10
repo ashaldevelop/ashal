@@ -24,7 +24,7 @@ export class AccdefListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns = ['index', 'Eng_Des', 'Arb_Des', 'AccDef_No'];
+  displayedColumns = ['index', 'AccDef_No', 'Eng_Des', 'Arb_Des', 'control'];
 
   constructor(
     private tostr: ToastrService,

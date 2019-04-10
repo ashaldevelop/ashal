@@ -23,6 +23,11 @@
       <mat-cell *matCellDef="let accdef let i= index;" fxFlex="40px" style="flex: 0 0 10%;"> <button mat-button style="font-weight: bold">{{ i+1 }}</button></mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="AccDef_No">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Accdef No </mat-header-cell>
+      <mat-cell *matCellDef="let accdef"> {{accdef.AccDef_No}} </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="Eng_Des">
       <mat-header-cell *matHeaderCellDef mat-sort-header> English Name </mat-header-cell>
       <mat-cell *matCellDef="let accdef"> {{accdef.Eng_Des}} </mat-cell>
@@ -33,7 +38,7 @@
       <mat-cell *matCellDef="let accdef"> {{accdef.Arb_Des}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="AccDef_No">
+    <ng-container matColumnDef="control">
       <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
       <mat-cell *matCellDef="let accdef">
         <button mat-icon-button style='margin-right:40px' (click)="onEdit(accdef.AccDef_No)"><mat-icon>edit</mat-icon></button>
