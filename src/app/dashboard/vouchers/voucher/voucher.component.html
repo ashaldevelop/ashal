@@ -68,23 +68,24 @@
     </div>
 
     <!-- details -->
-    <table width='100%' style='margin:30px 0' formArrayName="details">
+    <table class='details' width='100%' style='margin:30px 0' formArrayName="details">
 
         <tr align="center">
 
             <th>
-                <button mat-icon-button color="primary" (click)="addDetails()" type="button">
+                <!-- <button mat-icon-button color="primary" (click)="addDetails()" type="button">
                     <mat-icon>add</mat-icon>
-                </button>
+                </button> -->
             </th>
 
-            <th>رقم الحساب</th>
-            <th>اسم الحساب</th>
-            <th>البيــــــــــــــــــــــــــــان</th>
-            <th>مدين</th>
-            <th>دائن</th>
-            <th>مركز التكلفة</th>
-            <th>رقم الفاتورة</th>
+            <th width="11%">رقم الحساب</th>
+            <th width="15%">اسم الحساب</th>
+            <th width="40%">البيــــــــــــــــــــــــــــان</th>
+            <th width="6%">مدين</th>
+            <th width="6%">دائن</th>
+            <th width="10%">مركز التكلفة</th>
+            <th width="10%">رقم الفاتورة</th>
+            <th width="2"></th>
         </tr>
 
         <tr align="center" *ngFor="let detail of detailsForm.controls; let i=index" [formGroupName]="i">
@@ -127,12 +128,12 @@
 
 
             <td>
-                <input type="text" class="form-control" formControlName="InvNo">
+                <input type="text" class="form-control" formControlName="InvNo" (keydown.tab)="addDetailsShortCut(i)">
             </td>
 
             <td>
-                <button mat-button color="warn" (click)="removeDetails(i)" type="button">
-                    <mat-icon>remove</mat-icon>
+                <button mat-button (click)="removeDetails(i)" type="button">
+                    <mat-icon>delete_outline</mat-icon>
                 </button>
             </td>
 

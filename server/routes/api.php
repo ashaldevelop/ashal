@@ -50,6 +50,7 @@ Route::post('new-item', 'ItemController@save');
 Route::delete('item/{Itm_No}', 'ItemController@delete');
 
 // voucehrs routes
+Route::get('vouchers-list', 'VoucherController@index');
 Route::get('check-gd-no', 'VoucherController@checkGdNo');
 Route::get('sum-active-accdef', 'VoucherController@sumActiveAccdef');
 Route::post('new-voucher', 'VoucherController@save');

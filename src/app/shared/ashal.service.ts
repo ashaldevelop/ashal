@@ -113,6 +113,12 @@ export class AshalService {
 
 
   // vouchers
+  getVouchers(): Observable<Voucher[]>{
+    return this.http
+      .get<Voucher[]>('api/vouchers-list')
+      // .pipe(catchError(this.handleError('getTasks', [])))
+  }
+
   newVoucher(voucher: Voucher): Observable<Voucher>{
     return this.http.post<Voucher>('api/new-voucher', voucher)
   }

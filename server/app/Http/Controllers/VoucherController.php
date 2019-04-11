@@ -7,9 +7,16 @@ use App\GdHead;
 use App\GdDetails;
 use App\AccDef;
 use Illuminate\Support\Facades\DB;
+use App\Http\Resources\Voucher as VoucherResource;
+
 
 
 class VoucherController extends Controller{
+
+    // get all vouchers
+    public function index(){
+        return GdHead::select('gdNo', 'gdMem', 'gdGDate', 'gdTot')->where('gdTyp', 11)->get();
+    }
 
     public function preVoucher(){
         $preVoucher = (object) [

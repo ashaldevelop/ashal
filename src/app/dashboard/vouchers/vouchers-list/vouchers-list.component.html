@@ -1,4 +1,4 @@
-<!-- <mat-toolbar style='background:#CDEBFE;margin-bottom: 10px'>
+<mat-toolbar style='background:#CDEBFE;margin-bottom: 10px'>
 
   <span style="margin:0 auto;font-size:32px;font-weight: bold">
     سندات قيد اليومية
@@ -33,16 +33,21 @@
       <mat-cell *matCellDef="let voucher"> {{voucher.gdMem}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="gdMem">
+    <ng-container matColumnDef="gdGDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> تاريخ القيد </mat-header-cell>
+      <mat-cell *matCellDef="let voucher"> {{voucher.gdGDate}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="gdTot">
       <mat-header-cell *matHeaderCellDef mat-sort-header> إجمالي القيد </mat-header-cell>
       <mat-cell *matCellDef="let voucher"> {{voucher.gdTot}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="Unit_No">
+    <ng-container matColumnDef="controls">
       <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-      <mat-cell *matCellDef="let unit">
-        <button mat-icon-button style='margin-right:40px' (click)="onEdit(unit.Unit_No)"><mat-icon>edit</mat-icon></button>
-        <button mat-icon-button color='warn' (click)="onDelete(unit.Unit_No)"><mat-icon>delete_outline</mat-icon></button>
+      <mat-cell *matCellDef="let voucher">
+        <button mat-icon-button style='margin-right:40px' (click)="onEdit(voucher.gdNo)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color='warn' (click)="onDelete(voucher.gdNo)"><mat-icon>delete_outline</mat-icon></button>
       </mat-cell>
     </ng-container>
 
@@ -71,4 +76,4 @@
     [pageSizeOptions]="[5, 10, 25, 100]">
   </mat-paginator>
 
-</div> -->
+</div>

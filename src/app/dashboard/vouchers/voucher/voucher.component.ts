@@ -50,8 +50,15 @@ export class VoucherComponent implements OnInit {
 
   get detailsForm(){ return this.form.get('details') as FormArray }
 
+  addDetailsShortCut(i:number){
+    if(this.detailsForm.length-1 == i){
+      this.addDetails();
+    }    
+  }
+
   // add details to details form aray
   addDetails(){
+
     const details = this.fb.group({
       AccNo: ['', Validators.required],
       AccName: ['', Validators.required],

@@ -10,6 +10,7 @@ import { ItemsListComponent } from './dashboard/items/items-list/items-list.comp
 import { VoucherComponent } from './dashboard/vouchers/voucher/voucher.component';
 import { InvoiceComponent } from './dashboard/invoices/invoice/invoice.component';
 import { ItemComponent } from './dashboard/items/item/item.component';
+import { VouchersListComponent } from './dashboard/vouchers/vouchers-list/vouchers-list.component';
 
 const routes: Routes = [
   { 
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: "items-list", component: ItemsListComponent },
       { path: "new-item", component: NewItemComponent },
       { path: "item/:id", component: ItemComponent },
+      { path: "vouchers-list", component: VouchersListComponent },
       { path: "voucher/:id", component: VoucherComponent },
       { path: "invoice/:id", component: InvoiceComponent },
     ]
